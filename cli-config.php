@@ -1,0 +1,12 @@
+<?php
+	
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Tools\Console\ConsoleRunner;
+use Slim\Container;
+
+/** @var Container $container **/
+require __DIR__.'/src/bootstrap.php';
+ConsoleRunner::run(
+	ConsoleRunner::createHelperSet($entityManager)
+);
+	

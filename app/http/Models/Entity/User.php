@@ -5,12 +5,14 @@ use Doctrine\ORM\Annotation;
 use Doctrine\Common\Collections\ArrayCollection;
 use App\Http\Models\IJsonSerializable;
 use Doctrine\ORM\EntityManager;
-/** @Entity @Table(name="users") **/
+
+/** @Entity(repositoryClass="App\Http\Models\Repository\UserRepository") @Table(name="users") **/
 class User extends EntityManager implements IJsonSerializable {
    /** 
 	* @Id 
 	* @var int 
 	* @Column(type ="integer")
+	* @GeneratedValue
 	**/
 	private $id;
 	/**
@@ -28,6 +30,8 @@ class User extends EntityManager implements IJsonSerializable {
 
 	protected $funcionarios;
 
+	public function __construct(){}
+	
 	public function getId() : int 
 	{
 		return $this->id;
@@ -55,9 +59,7 @@ class User extends EntityManager implements IJsonSerializable {
 
 	public function jsonSerialize() : array {
 		return [
-			'id' => $this->getId(),
 			'user' => $this->getUser(),
-			'passw' =>$this->getPassw()
 		];
 	}
 }

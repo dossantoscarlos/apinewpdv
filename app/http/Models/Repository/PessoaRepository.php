@@ -9,15 +9,15 @@ use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 class PessoaRepository extends EntityRepository 
 {
 
-	public function findAllClientes() : array {
+	public function findAllPessoas() : array {
 		$pessoa = $this->findAll();
-		return $this->convert($pessoa);
+		return Pessoa::json($pessoa);
 	} 
 
 	public function findPessoa($param) : array {
 		$cQB = $this->_em->createQueryBuilder();
 		$query = $cQB->select(array('p'))
-			->from('App\Http\Models\Entity\Pessoa','p')
+			->from(Pessoa::class,'p')
 			->where($cQB->expr()->orX(
 					$cQB->expr()->like('p.nome', '?1'),
 					$cQB->expr()->like('p.sobrenome', '?2'),
@@ -26,7 +26,7 @@ class PessoaRepository extends EntityRepository
 			->setParameter(2,$param->sobrenome.'%')
 			->setParameter(3,$param->cpf);
 		$pessoa = $query->getQuery()->getResult();
-		return $this->convert($pessoa);		
+		return Pessoa::json($pessoa);		
 	}
 
 	public function salvarPessoa($param) : int

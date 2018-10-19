@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Interfaces\IApiDAO;
-use App\Cripto\BcryptCustom;
+
 use Respect\Validation\Validator as V;
 use App\Http\Models\Entity\User;
 
@@ -48,9 +48,6 @@ class UsersController extends Controller implements IApiDAO
 					'passw' => V::Alnum()->noWhitespace()->notEmpty(),
 				]);
 			if ($error == null){	
-				$bcryptCustom = new BcryptCustom();			
-				$value = $bcryptCustom->cryptHash($objeto->passw);
-				$objeto->passw = $value;
 				$result = $this->orm->getRepository(User::class)->salvarUser($objeto);
 				return $this->response->withStatus($result);
 			}else{
@@ -64,10 +61,37 @@ class UsersController extends Controller implements IApiDAO
 	}
 
 	public function drop ($request, $response, $args){
-		return $this->response->withStatus(200);
+		$obj = (object) $args;
+		if(isset($obj->user)){
+			$user = $this->orm->getRepository(User::class)->removeUser($obj);
+			return $this->response->withStatus($user);
+		}else{
+			return $this->response->withStatus(400);
+		}
 	}
 
 	public function update ($request, $response, $args){
-		return $this->response->withStatus(200);
+		$uri = $request->getUri()->getQuery();
+		dump($uri);
+
+		if(isset($uri))
+		{
+
+			$obj = (object) $request->getParams();
+			$objArgs = (object) $args;
+			
+			$error = $this->validator->validate($request , [
+				'passw' => V::Alnum()->noWhitespace()->notEmpty(),
+			]);
+			if($error == null ){
+				$user = $this->orm->getRepository(User::class)->atualizarUser($objArgs,$obj);
+				return $this->response->withStatus($user);
+			}else{
+				$errors[] = (object) $error;
+				return $this->response->withJson($errors);
+			}
+		}else {
+			return $this->response->withStatus(500);
+		}
 	}
 }

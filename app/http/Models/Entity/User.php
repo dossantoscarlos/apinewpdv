@@ -59,7 +59,19 @@ class User extends EntityManager implements IJsonSerializable {
 
 	public function jsonSerialize() : array {
 		return [
+			'id' => $this->getId(),
 			'user' => $this->getUser(),
 		];
+	}
+	public static function json($classe) :array {
+		$result = null ; 
+		if (!empty($classe)){
+			foreach ($classe as $key => $value) {
+				$result[] = $classe[$key]->jsonSerialize();
+			}
+			return $result;
+		}else {
+			return array('Message' => 'Busca nao retornou resultados');
+		}
 	}
 }

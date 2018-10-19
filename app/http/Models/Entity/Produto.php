@@ -51,17 +51,6 @@ class Produto extends EntityManager implements IJsonSerializable
 	 **/
 	protected $valor;
 
-
-	// public function __construct($nome,$tipo,$code,$kilo,$unidade,$valor)
-	// {
-	// 	$this->setNome($nome);
-	// 	$this->setTipo($tipo);
-	// 	$this->setCode($code);
-	// 	$this->setKilo($kilo);
-	// 	$this->setUnidade($unidade);
-	// 	$this->setValor($valor); 
-
-	// }
 	public function __construct(){}
 	
 	public function getId(){
@@ -127,5 +116,17 @@ class Produto extends EntityManager implements IJsonSerializable
 			'unidade' => $this->getUnidade(),
 			'valor' => $this->getValor()
 		];
+	}
+
+	public static function json($classe) :array {
+		$result = null ; 
+		if (!empty($classe)){
+			foreach ($classe as $key => $value) {
+				$result[] = $classe[$key]->jsonSerialize();
+			}
+			return $result;
+		}else {
+			return array('Message' => 'Busca nao retornou resultados');
+		}
 	}
 } 

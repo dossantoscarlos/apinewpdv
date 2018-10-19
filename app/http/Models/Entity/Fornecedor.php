@@ -3,11 +3,14 @@ namespace App\Http\Models\Entity;
 
 use Doctrine\ORM\Annotation;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\EntityManager;
+use App\Http\Models\IJsonSerializable;
 
 /**
- * @Entity @Table(name="Fornecedores")
+ * @Entity(repositoryClass="App\Http\Models\Repository\FornecedorRepository") @Table(name="Fornecedores")
  **/
-class Fornecedor {
+class Fornecedor extends EntityManager implements IJsonSerializable 
+{
 	
 	/** @Id @Column(type="integer") @var int @GeneratedValue **/
 	private $id;
@@ -21,7 +24,7 @@ class Fornecedor {
 	protected $complemento;
 	/** @Column(type="string") @var String **/
 	protected $razaoSocial;
-	/** @Column(type="string") @var String **/
+	/** @Column(type="integer") @var int **/
 	protected $telefone;
 	/** @Column(type="integer") @var int **/
 	protected $cep;
@@ -57,7 +60,7 @@ class Fornecedor {
 		$this->cnpj = $cnpj;
 	}
 
-	public function getNumero() : String 
+	public function getNumero() : int 
 	{
 		return $this->numero;
 	}
@@ -106,4 +109,29 @@ class Fornecedor {
 		return $this->cep = $cep;
 	}
 
+	public function jsonSerialize() : array
+	{
+		return [
+			'id' => $this->getId(),
+			'nome' => $this->getNome(),
+			'cnpj' => $this->getCNPJ(),
+			'numero' => $this->getNumero(),
+			'complemento' => $this->getComplemento(),
+			'razaoSocial' => $this->getRazaoSocial(),
+			'telefone' => $this->getTelefone(),
+			'cep' => $this->getCep(),
+		];
+	}
+
+	public static function json($classe) :array {
+		$result = null ; 
+		if (!empty($classe)){
+			foreach ($classe as $key => $value) {
+				$result[] = $classe[$key]->jsonSerialize();
+			}
+			return $result;
+		}else {
+			return array('Message' => 'Busca nao retornou resultados');
+		}
+	}
 }

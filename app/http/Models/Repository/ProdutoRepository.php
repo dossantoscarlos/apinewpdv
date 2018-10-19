@@ -13,22 +13,21 @@ class ProdutoRepository Extends EntityRepository
 	//busca todos os produtos
 	public function findProdutosAll() : array {
 		$todos = $this->findAll();
-		return $this->convert($todos);
+		return Produto::json($todos);
 	}
 	
 	public function findProdutos($param) : array {
-		dump($param);
 		$cQB = $this->_em->createQueryBuilder();
 		$query = $cQB->select(array('p'))
-					 ->from('App\Http\Models\Entity\Produto' , 'p')
+					 ->from(Produto::class , 'p')
 					 ->where($cQB->expr()->orX(
 					 	$cQB->expr()->like('p.nome','?1'),
-					 	$cQB->expr()->eq('p.code','?1')
+					 	$cQB->expr()->eq('p.code','?2')
 					 ))
 					 ->setParameter(1, $param->nome)
-					 ->setParameter(1,$param->code);
+					 ->setParameter(2,$param->code);
 		$result = $query->getQuery()->getResult();
-		return $this->convert($result);
+		return Produto::json($result);
 	}
 
 	public function createProduto($param) : int
@@ -79,16 +78,4 @@ class ProdutoRepository Extends EntityRepository
 		}
 	}
 
-	//convert em json
-	protected function convert($classe) : array {
-		$result = null ; 
-		if (!empty($classe)){
-			foreach ($classe as $key => $value) {
-				$result[] = $classe[$key]->jsonSerialize();
-			}
-			return $result;
-		}else {
-			return array('Message' => 'Busca nao retornou resultados');
-		}
-	}
 }

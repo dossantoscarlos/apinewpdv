@@ -47,4 +47,15 @@ class Estoque {
 		$this->qntRecebida = $qntRecebida;
 	}
 
+	public static function json($classe) :array {
+		$result = null ; 
+		if (!empty($classe)){
+			foreach ($classe as $key => $value) {
+				$result[] = $classe[$key]->jsonSerialize();
+			}
+			return $result;
+		}else {
+			return array('Message' => 'Busca nao retornou resultados');
+		}
+	}
 }

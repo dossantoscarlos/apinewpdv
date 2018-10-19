@@ -45,7 +45,7 @@ class PessoasController extends Controller implements IApiDAO
 				return $this->response->withJson($errors,400);
 			}
 		}else{
-			$pessoa = $this->orm->getRepository(Pessoa::class)->findAllClientes();
+			$pessoa = $this->orm->getRepository(Pessoa::class)->findAllPessoas();
 			return $this->response->withStatus(200)->withJson($pessoa);
 		}
 	}

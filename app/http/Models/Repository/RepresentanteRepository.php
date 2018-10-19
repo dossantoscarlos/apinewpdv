@@ -45,9 +45,11 @@ class RepresentanteRepository extends EntityRepository
 		try{
 			$r = $this->findCracharRepresentante($param);
 			$objectRepre = $this->find($r[0]['id']);	
+			
 			$this->_em->remove($objectRepre);
 			$this->_em->flush();
 			return 200;
+
 		}catch(ORMExecption | UniqueConstraintViolationException | ORMInvalidArgumentException $e){
 			return 404;
 		}

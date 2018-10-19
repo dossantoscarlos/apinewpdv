@@ -8,7 +8,7 @@ use App\Http\Models\IJsonSerializable;
 
 /**
  * @Entity(RepositoryClass="App\Http\Models\RepresentanteRepository") 
- * @Table("representantes")
+ * @Table(name="representantes")
  **/
 class Representante extends EntityManager implements IJsonSerializable
 {

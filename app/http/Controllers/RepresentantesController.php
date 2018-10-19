@@ -60,7 +60,7 @@ class RepresentantesController extends Controller implements IApiDAO
 
 			if ($error == null) {
 				$result = $this->orm->getRepository(Representante::class)->removerRepresentante($obj);
-				return 
+				return $this->response->withStatus($result);
 			} else {
 				$errors[] = (object)$error;
 				return $this->response->withJson($errors);

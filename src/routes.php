@@ -5,7 +5,7 @@ use Slim\Http\Response;
 use App\Http\Controllers\PessoasController;
 use App\Http\Controllers\ProdutosController;
 use App\Http\Controllers\UsersController;
-use App\Http\Controllers\RepresetanteController;
+use App\Http\Controllers\RepresentantesController;
 use App\Http\Controllers\FornecedorController;
 
 // Routes
@@ -29,7 +29,7 @@ $app->delete('/users/{user}' , UsersController::class.":drop");
 $app->put('/users/{user}' , UsersController::class.":update");
 
 #tabela Representantes
-$app->get('/representantes' , RepresetanteController::class.':show');
-$app->post('/representantes', RepresetanteController::class.':create');
-$app->delete('/representantes/{user}' , RepresetanteController::class.":drop");
+$app->get('/representantes' , RepresentantesController::class.':show');
+$app->post('/representantes', RepresentantesController::class.':create');
+$app->delete('/representantes/{crachar}' , RepresentantesController::class.":drop");
 

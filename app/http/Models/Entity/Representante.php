@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityManager;
 use App\Http\Models\IJsonSerializable;
 
 /**
- * @Entity(RepositoryClass="App\Http\Models\RepresentanteRepository") 
+ * @Entity(repositoryClass="App\Http\Models\Repository\RepresentanteRepository") 
  * @Table(name="representantes")
  **/
 class Representante extends EntityManager implements IJsonSerializable
@@ -15,23 +15,23 @@ class Representante extends EntityManager implements IJsonSerializable
 	/**
 	 * @Id
 	 * @var Int
-	 * @Column(type="Integer")
+	 * @Column(type="integer")
 	 * @GeneratedValue
 	 **/
-	private $id;
+	protected $id;
 	/**
 	 * @var String
-	 * @Column(type="String")
+	 * @Column(type="string")
 	 **/
 	protected $nome; 
 	/**
 	 * @var String
-	 * @Column(type="String")
+	 * @Column(type="string")
 	 **/
 	protected $sobrenome;
 	/**
 	 * @var String
-	 * @Column(type="String" unique="true")
+	 * @Column(type="string", unique=true)
 	 **/
 	protected $crachar;
 
@@ -59,7 +59,7 @@ class Representante extends EntityManager implements IJsonSerializable
 		return $this;
 	}
 
-	public function getCrachar() : int {
+	public function getCrachar() : String {
 		return $this->crachar;
 	}
 	public function setCrachar($crachar){
@@ -71,8 +71,9 @@ class Representante extends EntityManager implements IJsonSerializable
 	{
 		return [
 			'id'=> $this->getId(),
-			'nome' => $this->sobrenome(),
-			'crachar' => $this->crachar()
+			'nome' => $this->getNome(),
+			'sobrenome' => $this->getSobrenome(),
+			'crachar' => $this->getCrachar()
 		];
 	}
 

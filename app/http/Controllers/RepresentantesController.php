@@ -9,8 +9,9 @@ class RepresentantesController extends Controller implements IApiDAO
 {
 	public function show($request, $response, $args)
 	{
-		$obj = (object)$request->getParams();
-		if (isset($obj->crachar)) {
+		$objQuery = $request->getUri()->getQuery();		
+		if (!empty($objQuery)) {
+			$obj = (object)$request->getParams();
 			$error = $this->validator->validate($request, [
 				'crachar' => V::Alnum()->noWhitespace()->notEmpty()
 			]);
@@ -23,7 +24,7 @@ class RepresentantesController extends Controller implements IApiDAO
 			}
 
 		} else {
-			$representantes = $this->orm->getRepository(Representante::class)->findRepresentanteAll();
+			$representantes = $this->orm->getRepository(Representante::class)->findAllRepresentantes();
 			return $this->response->withJson($representantes);
 		}
 	}
@@ -31,7 +32,7 @@ class RepresentantesController extends Controller implements IApiDAO
 	public function create($request, $response, $args)
 	{
 		$obj = (object)$request->getParams();
-		if (isset($obj->crachar)) {
+		if (!empty($obj)) {
 			$error = $this->validator->validate($request, [
 				'crachar' => V::Alnum()->noWhitespace()->notEmpty(),
 				'nome' => V::alpha()->noWhitespace()->notEmpty(),
@@ -52,19 +53,10 @@ class RepresentantesController extends Controller implements IApiDAO
 
 	public function drop($request, $response, $args)
 	{
-		$obj = (object)$request->getParams();
-		if (isset($obj->crachar)) {
-			$error = $this->validator->validate($request, [
-				'crachar' => V::Alnum()->noWhitespace()->notEmpty()
-			]);
-
-			if ($error == null) {
-				$result = $this->orm->getRepository(Representante::class)->removerRepresentante($obj);
-				return $this->response->withStatus($result);
-			} else {
-				$errors[] = (object)$error;
-				return $this->response->withJson($errors);
-			}
+		$obj = (object) $args;
+		if (isset($args)) {
+			$result = $this->orm->getRepository(Representante::class)->removerRepresentante($obj);
+			return $this->response->withStatus($result);
 		} else {
 			return $this->response->withStatus(302);
 		}

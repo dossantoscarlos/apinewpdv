@@ -20,7 +20,7 @@ class RepresentanteRepository extends EntityRepository
 		$cQB = $this->_em->createQueryBuilder(); 
 		$query = $cQB->select('r')->from(Representante::class, 'r')
 		->where($cQB->expr()->eq('r.crachar','?1'))
-		->setParameter(1,$crachar->numero);
+		->setParameter(1,$crachar->crachar);
 		$result = $query->getQuery()->getResult();
 		return Representante::json($result);
 	}
@@ -30,8 +30,7 @@ class RepresentanteRepository extends EntityRepository
 			$r = new Representante();
 			$r->setNome($param->nome);
 			$r->setSobrenome($param->sobrenome);
-			$r->setCrachar($param->numero);
-
+			$r->setCrachar($param->crachar);
 			$this->_em->persist($r);
 			$this->_em->flush();
 
@@ -45,10 +44,10 @@ class RepresentanteRepository extends EntityRepository
 	public function removerRepresentante ($param) : int {
 		try{
 			$r = $this->findCracharRepresentante($param);
-			$objectRepre = $this->find($r[0]['id']);
-			$this->remove($objectRepre);
-			$this->flush();
-			return 204;
+			$objectRepre = $this->find($r[0]['id']);	
+			$this->_em->remove($objectRepre);
+			$this->_em->flush();
+			return 200;
 		}catch(ORMExecption | UniqueConstraintViolationException | ORMInvalidArgumentException $e){
 			return 404;
 		}

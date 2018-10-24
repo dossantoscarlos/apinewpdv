@@ -5,9 +5,11 @@ use Doctrine\ORM\Annotation;
 use Doctrine\Common\Collections\ArrayCollection;
 use App\Http\Models\IJsonSerializable;
 use Doctrine\ORM\EntityManager;
+use App\Cripto\BcryptCustom;
 
 /** @Entity(repositoryClass="App\Http\Models\Repository\UserRepository") @Table(name="users") **/
 class User extends EntityManager implements IJsonSerializable {
+   
    /** 
 	* @Id 
 	* @var int 
@@ -15,16 +17,20 @@ class User extends EntityManager implements IJsonSerializable {
 	* @GeneratedValue
 	**/
 	private $id;
+
 	/**
 	 * @var String
 	 * @Column(type="string", unique=true)
 	 **/
 	protected $user;
+
 	/**
 	 * @var String
 	 * @Column(type="string")
 	 **/
 	protected $passw;
+
+	protected $status;
 	
 	protected $permision;
 
@@ -55,6 +61,13 @@ class User extends EntityManager implements IJsonSerializable {
 	public function setPassw($passw) 
 	{
 		$this->passw = $passw;
+	}
+
+	public static function hashPassw($passw) : String 
+	{
+		$bcryptCustom = new BcryptCustom();			
+		$hash = $bcryptCustom->cryptHash($passw);
+		return $hash;
 	}
 
 	public function jsonSerialize() : array {

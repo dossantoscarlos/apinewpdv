@@ -11,18 +11,22 @@ class RepresentanteRepository extends EntityRepository
 {
 	public function findAllRepresentantes () : array
 	{
-		$repre = $this->findAll();
-		return Representante::json($repre);
+		return Representante::json($this->findAll());
 	}
 
 	public function findCracharRepresentante($crachar) : array
 	{
-		$cQB = $this->_em->createQueryBuilder(); 
-		$query = $cQB->select('r')->from(Representante::class, 'r')
-		->where($cQB->expr()->eq('r.crachar','?1'))
-		->setParameter(1,$crachar->crachar);
+		$qb = $this->_em->createQueryBuilder(); 
+
+		$query = $qb->select('r')
+					->from(Representante::class, 'r')
+					->where($qb->expr()->like('r.crachar','?1'))
+					->setParameter(1,$crachar->crachar.'%');
+
 		$result = $query->getQuery()->getResult();
+		
 		return Representante::json($result);
+
 	}
 	public function salvarRepresentante($param): int
 	{
@@ -31,6 +35,7 @@ class RepresentanteRepository extends EntityRepository
 			$r->setNome($param->nome);
 			$r->setSobrenome($param->sobrenome);
 			$r->setCrachar($param->crachar);
+			
 			$this->_em->persist($r);
 			$this->_em->flush();
 

@@ -1,27 +1,37 @@
 <?php
 namespace App\Http\Models\Entity;
 
-use Doctrine\Common\Annotation\Annotation;
+use Doctrine\ORM\Annotation;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\EntityManager;
 
-class Permisao
+class  Permisao extends EntityManager implements IJsonSerializable
 {
 	private $id;
 
 	protected $acesso;
 
+	public function __construct(){}
+
+	public function getId(){
+		return $this->id;
+	}
+
 	public function getAcesso() : Array{
 		return $this->acesso;
-	} 
-	
+	}
+
 	public function setAcesso($acesso) {
 		$this->acesso[] = $acesso;
 		return $this;
 	}
-
+	public function jsonSerialize(){
+		return [
+			'acesso' => $this->getAcesso();
+		];
+	}
 	public static function json($classe) :array {
-		$result = null ; 
+		$result = null ;
 		if (!empty($classe)){
 			foreach ($classe as $key => $value) {
 				$result[] = $classe[$key]->jsonSerialize();

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
@@ -15,7 +15,6 @@ class UsersController extends Controller implements IApiDAO
 
 		if (!empty($uri)) {
 			$obj = (object)$request->getParams();
-
 			if (isset($obj->user)) {
 				$error = $this->validator->validate($request, [
 					'user' => V::Alnum()->noWhitespace()->notEmpty(),
@@ -28,7 +27,7 @@ class UsersController extends Controller implements IApiDAO
 					return $this->response->withJson($errors);
 				}
 			} else {
-				return $this->response->withStatus(204);
+				return $this->response->withStatus(302);
 			}
 		} else {
 			return $this->response->withJson($this->orm->getRepository(User::class)->findUserAll());

@@ -6,8 +6,8 @@ use App\Http\Controllers\PessoasController;
 use App\Http\Controllers\ProdutosController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RepresentantesController;
-use App\Http\Controllers\FornecedorController;
 
+use App\Http\Controllers\FornecedoresController;
 // Routes
 
 #tabela Pessoas
@@ -32,4 +32,10 @@ $app->put('/users/{user}' , UsersController::class.":update");
 $app->get('/representantes' , RepresentantesController::class.':show');
 $app->post('/representantes', RepresentantesController::class.':create');
 $app->delete('/representantes/{crachar}' , RepresentantesController::class.":drop");
+
+#tabela Representantes
+$app->get('/fornecedores' , FornecedoresController::class.':show');
+$app->post('/fornecedores', FornecedoresController::class.':create');
+$app->put('/fornecedore/{cnpj}' , FornecedoresController::class.':update');
+$app->delete('/fornecedores/{cnpj}' , FornecedoresController::class.":drop");
 

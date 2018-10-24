@@ -9,12 +9,13 @@ use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 class PessoaRepository extends EntityRepository 
 {
 
-	public function findAllPessoas() : array {
-		$pessoa = $this->findAll();
-		return Pessoa::json($pessoa);
+	public function findAllPessoas() : array 
+	{
+		return Pessoa::json($this->findAll());
 	} 
 
-	public function findPessoa($param) : array {
+	public function findPessoa($param) : array
+	{
 		$cQB = $this->_em->createQueryBuilder();
 		$query = $cQB->select(array('p'))
 			->from(Pessoa::class,'p')
@@ -65,7 +66,8 @@ class PessoaRepository extends EntityRepository
 		}
 	}
 
-	public function deletarPessoa($param) : int {
+	public function deletarPessoa($param) : int
+	{
 		try{
 			$pessoa = $this->findPessoa($param);
 			$pessoaId = $this->find($pessoa[0]['id']);
@@ -77,7 +79,8 @@ class PessoaRepository extends EntityRepository
 		}
 	}
 
-	protected function convert($classe) : array {
+	protected function convert($classe) : array 
+	{
 		$result = null ; 
 		if (!empty($classe)){
 			foreach ($classe as $key => $value) {

@@ -6,33 +6,90 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
 use App\Http\Models\IJsonSerializable;
 
+/** 
+ * @Entity (repositoryClass="App\Http\Models\Repository\FuncionarioRepository") 
+ * @Table(name="funcionarios")
+ **/
 class Funcionario extends EntityManager implements IJsonSerializable
 {
-
+	/**
+	 * @Id
+	 * @var int
+	 * @Column(type="integer")
+	 * @GeneretedValue
+	 **/
 	private $id;
 
+	/**
+	 * @var String
+	 * @Column(type="string")
+	 **/
 	protected $cargo;
 
+	/** 
+	 * @var String
+	 * @Column(type="string")
+	 **/
 	protected $nome;
 
+	/** 
+	 * @var String
+	 * @Column(type="string")
+	 **/
 	protected $sobrenome;
 
+	/** 
+	 * @var int
+	 * @Column(type="integer")
+	 **/
 	protected $rg;
 
+	/** 
+	 * @var int
+	 * @Column(type="integer")
+	 **/
 	protected $cpf;
 
+	/** 
+	 * @var int
+	 * @Column(type="integer")
+	 **/
 	protected $cep;
 
+	/** 
+	 * @var int
+	 * @Column(type="integer")
+	 **/
 	protected $numero;
 
+	/** 
+	 * @var String
+	 * @Column(type="string")
+	 **/
 	protected $complemento;
 
+	/** 
+	 * @var String
+	 * @Column(type="string")
+	 **/
 	protected $dataAdmissao;
 
+	/** 
+	 * @var String
+	 * @Column(type="string")
+	 **/
 	protected $matricula;
 
+	/** 
+	 * @var String
+	 * @Column(type="string")
+	 **/
 	protected $carteira;
 
+	/** 
+	 * @var int
+	 * @Column(type="int")
+	 **/
 	protected $pis;
 
 	protected $permissoes;

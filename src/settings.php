@@ -1,5 +1,8 @@
 <?php
 define('APP_ROOT', __DIR__);
+
+// require ('Web/Validation/Validator.php');
+
 return [
     'settings' => [
         'displayErrorDetails' => true, // set to false in production

@@ -1,7 +1,7 @@
 <?php
 define('APP_ROOT', __DIR__);
 
-include_once('/../web/Validation/Validator.php');
+include_once('app/web/Validation/Validator.php');
 
 return [
     'settings' => [

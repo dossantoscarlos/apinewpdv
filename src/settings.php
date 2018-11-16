@@ -1,7 +1,8 @@
 <?php
 define('APP_ROOT', __DIR__);
 
-include (APP_ROOT.'/App/Validation/Validator.php');
+require_once APP_ROOT.'/App/Validation/Validator.php';
+$validator = new Validator();
 
 return [
     'settings' => [
@@ -41,7 +42,7 @@ return [
         ],
         //Validation
         'validator' =>[
-            'validate' => new Validator, 
+            'validate' => $validator, 
         ],
 
         // Monolog settings

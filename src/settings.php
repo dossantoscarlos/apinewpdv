@@ -39,7 +39,7 @@ return [
         // ],
         //Validation
         'validator' =>[
-            'validate' => new \App\Validation\validator(), 
+            'validate' => new \web\Validation\validator(), 
         ],
 
         // Monolog settings

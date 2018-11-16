@@ -1,7 +1,7 @@
 <?php
 define('APP_ROOT', __DIR__);
 
-require ('../Web/Validation/Validator.php');
+require_once('/../web/Validation/Validator.php');
 
 return [
     'settings' => [

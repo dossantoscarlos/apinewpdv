@@ -16,7 +16,7 @@ $app->post('/pessoas', PessoasController::class.':create');
 $app->put('/pessoas/{cpf}', PessoasController::class.':update');
 $app->delete('/pessoas/{cpf}', PessoasController::class.':drop');
 
-#tabela Produtos
+//tabela Produtos
 $app->get('/produtos' , ProdutosController::class.':show');
 $app->post('/produtos', ProdutosController::class.':create');
 $app->delete('/produtos/{code}' , ProdutosController::class.":drop");

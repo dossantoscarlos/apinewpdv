@@ -1,3 +1,3 @@
 <?php
 
-require_once DIR.'/public/index.php';
+require_once './public/index.php';

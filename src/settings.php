@@ -1,5 +1,8 @@
 <?php
 define('APP_ROOT', __DIR__);
+
+use App\Validation\Validator;
+
 return [
     'settings' => [
         'displayErrorDetails' => true, // set to false in production
@@ -38,7 +41,7 @@ return [
         ],
         //Validation
         'validator' =>[
-            'validate' => new \app\Validation\Validator, 
+            'validate' => new Validator, 
         ],
 
         // Monolog settings

@@ -51,18 +51,17 @@ $isDevMode = true;
 /**
  * Diretório de Entidades e Metadata do Doctrine
  */
-$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/../App/Http/Models/Entity/"), $isDevMode);
+$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/../Web/Http/Models/Entity/"), $isDevMode);
 /**
  * Array de configurações da nossa conexão com o banco
  */
 $conn = array(
 	'driver' => 'pdo_mysql',
 	'host' => 'us-cdbr-iron-east-01.cleardb.net',
-	'port' => 3306,
 	'dbname' => 'heroku_6dc08d68943683e',
-	'user' => 'bae264541a2f71:',
+	'user' => 'bae264541a2f71',
 	'password' => '61aae678',
-	'charset' => 'utf-8'
+	
 );
 /**
  * Instância do Entity Manager

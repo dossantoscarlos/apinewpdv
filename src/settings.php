@@ -1,7 +1,25 @@
 <?php
 define('APP_ROOT', __DIR__);
 
-include_once('app/web/Validation/Validator.php');
+use Respect\Validation\Validator as Respect;
+use Respect\Validation\Exceptions\NestedValidationException;
+    
+class Validator
+{
+    protected $erros;
+        
+    public function validate($request, array $rules)
+    {
+        foreach ($rules as $field => $rule) {
+            try {
+                $rule->setName($field)->assert($request->getParam($field));
+            } catch(NestedValidationException $e) {
+               return $this->erros[$field] = $e->getMessages();
+            }
+        }   
+    }
+}
+
 
 return [
     'settings' => [

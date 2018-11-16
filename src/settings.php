@@ -1,7 +1,7 @@
 <?php
 define('APP_ROOT', __DIR__);
 
-require_once '../app/Validation/Validator.php';
+require '../app/Validation/Validator.php';
 $validator = new Validator ;
 
 return [
@@ -23,23 +23,23 @@ return [
             'db' => $entityManager,
          ],
         
-        'doctrine' => [
+        // 'doctrine' => [
             
-            // if true, metadata caching is forcefully disabled
-            'dev_mode' => true,
+        //     // if true, metadata caching is forcefully disabled
+        //     'dev_mode' => true,
 
-            // path where the compiled metadata info will be cached
-            // make sure the path exists and it is writable
-            'cache_dir' => APP_ROOT . '/var/doctrine',
+        //     // path where the compiled metadata info will be cached
+        //     // make sure the path exists and it is writable
+        //     'cache_dir' => APP_ROOT . '/var/doctrine',
 
-            // you should add any other path containing annotated entity classes
-            'metadata_dirs' => [APP_ROOT."/../App/Http/Models/Entity/"],
+        //     // you should add any other path containing annotated entity classes
+        //     'metadata_dirs' => [APP_ROOT."/../App/Http/Models/Entity/"],
             
-            'connection' =>  [
-              'driver' => 'pdo_sqlite',
-              'path' =>APP_ROOT.'/../db.sqlite',
-            ]
-        ],
+        //     'connection' =>  [
+        //       'driver' => 'pdo_sqlite',
+        //       'path' =>APP_ROOT.'/../db.sqlite',
+        //     ]
+        // ],
         //Validation
         'validator' =>[
             'validate' => $validator, 

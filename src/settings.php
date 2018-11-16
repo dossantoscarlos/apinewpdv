@@ -2,7 +2,7 @@
 define('APP_ROOT', __DIR__);
 
 require_once '../app/Validation/Validator.php';
-$validator = new Validator();
+$validator = new Validator ;
 
 return [
     'settings' => [

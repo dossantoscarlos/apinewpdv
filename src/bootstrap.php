@@ -57,11 +57,11 @@ $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/../App/Ht
  */
 $conn = array(
 	'driver' => 'pdo_mysql',
-	'host' => 'localhost',
+	'host' => 'us-cdbr-iron-east-01.cleardb.net',
 	'port' => 3306,
-	'dbname' => 'mydb',
-	'user' => 'user',
-	'password' => 'secret',
+	'dbname' => 'heroku_6dc08d68943683e',
+	'user' => 'bae264541a2f71:',
+	'password' => '61aae678',
 	'charset' => 'utf-8'
 );
 /**

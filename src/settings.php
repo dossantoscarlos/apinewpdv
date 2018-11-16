@@ -1,7 +1,7 @@
 <?php
 define('APP_ROOT', __DIR__);
 
-use App\Validation\Validator;
+include (APP_ROOT.'/App/Validation/Validator.php');
 
 return [
     'settings' => [
@@ -41,7 +41,7 @@ return [
         ],
         //Validation
         'validator' =>[
-            'validate' => new \App\App\Validation\Validator(), 
+            'validate' => new Validator, 
         ],
 
         // Monolog settings

@@ -38,7 +38,7 @@ return [
         ],
         //Validation
         'validator' =>[
-            'validate' => new \App\Validation\Validator, 
+            'validate' => new \app\Validation\Validator, 
         ],
 
         // Monolog settings

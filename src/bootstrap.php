@@ -40,7 +40,7 @@
 // };
 
 // return $container;
- 
+
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 use Psr7Middlewares\Middleware\TrailingSlash;
@@ -56,8 +56,13 @@ $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/../App/Ht
  * Array de configurações da nossa conexão com o banco
  */
 $conn = array(
-    'driver' => 'pdo_sqlite',
-    'path' =>__DIR__.'/../db.sqlite',
+	'driver' => 'pdo_mysql',
+	'host' => 'localhost',
+	'port' => 3306,
+	'dbname' => 'mydb',
+	'user' => 'user',
+	'password' => 'secret',
+	'charset' => 'utf-8'
 );
 /**
  * Instância do Entity Manager

@@ -1,9 +1,6 @@
 <?php
 define('APP_ROOT', __DIR__);
 
-include '../app/Validation/Validator.php';
-$validator = new Validator();
-
 return [
     'settings' => [
         'displayErrorDetails' => true, // set to false in production
@@ -42,7 +39,7 @@ return [
         // ],
         //Validation
         'validator' =>[
-            'validate' => $validator, 
+            'validate' => new \App\Validation\validator(), 
         ],
 
         // Monolog settings

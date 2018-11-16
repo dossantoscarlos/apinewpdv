@@ -2,12 +2,12 @@
 
 use Slim\Http\Request;
 use Slim\Http\Response;
-use App\Http\Controllers\PessoasController;
-use App\Http\Controllers\ProdutosController;
-use App\Http\Controllers\UsersController;
-use App\Http\Controllers\RepresentantesController;
-use App\Http\Controllers\FuncionariosController;
-use App\Http\Controllers\FornecedoresController;
+use Web\Http\Controllers\PessoasController;
+use Web\Http\Controllers\ProdutosController;
+use Web\Http\Controllers\UsersController;
+use Web\Http\Controllers\RepresentantesController;
+use Web\Http\Controllers\FuncionariosController;
+use Web\Http\Controllers\FornecedoresController;
 // Routes
 
 #tabela Pessoas

@@ -1,8 +1,8 @@
 <?php
 define('APP_ROOT', __DIR__);
 
-require '../app/Validation/Validator.php';
-$validator = new Validator ;
+include '../app/Validation/Validator.php';
+$validator = new Validator();
 
 return [
     'settings' => [

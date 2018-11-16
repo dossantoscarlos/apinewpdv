@@ -6,7 +6,7 @@ use App\Http\Controllers\PessoasController;
 use App\Http\Controllers\ProdutosController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RepresentantesController;
-
+use App\Http\Controllers\FuncionariosController;
 use App\Http\Controllers\FornecedoresController;
 // Routes
 
@@ -33,9 +33,15 @@ $app->get('/representantes' , RepresentantesController::class.':show');
 $app->post('/representantes', RepresentantesController::class.':create');
 $app->delete('/representantes/{crachar}' , RepresentantesController::class.":drop");
 
-#tabela Representantes
+#tabela fornecedores
 $app->get('/fornecedores' , FornecedoresController::class.':show');
 $app->post('/fornecedores', FornecedoresController::class.':create');
 $app->put('/fornecedore/{cnpj}' , FornecedoresController::class.':update');
 $app->delete('/fornecedores/{cnpj}' , FornecedoresController::class.":drop");
+
+#tabela Funcionarios
+$app->get('/funcionarios[/{matr}]' , FuncionariosController::class.':show');
+$app->post('/funcionarios', FuncionariosController::class.':create');
+$app->put('/funcionarios/{matr}' , FuncionariosController::class.':update');
+$app->delete('/funcionarios/{matr}' , FuncionariosController::class.":drop");
 

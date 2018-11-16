@@ -50,7 +50,7 @@ class Estoque  extends EntityManager implements IJsonSerializable
 		$this->qntRecebida = $qntRecebida;
 	}
 
-	public function jsonSerialize(){
+	public function jsonSerialize() : array {
 		return [
 			'id' => $this->getId(),
 			'quantidade_atual' => $this->getQntAtual(),
@@ -58,7 +58,7 @@ class Estoque  extends EntityManager implements IJsonSerializable
 			'quantidade_Minima' => $this->getQntMinima()
 		];
 	}
-	public static function json($classe) :array {
+	public static function json($classe) : array {
 		$result = null ;
 		if (!empty($classe)){
 			foreach ($classe as $key => $value) {

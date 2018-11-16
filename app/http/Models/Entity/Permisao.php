@@ -4,12 +4,15 @@ namespace App\Http\Models\Entity;
 use Doctrine\ORM\Annotation;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
+use App\Http\Models\IJsonSerializable;
 
-class  Permisao extends EntityManager implements IJsonSerializable
+class Permisao extends EntityManager implements IJsonSerializable
 {
 	private $id;
 
 	protected $acesso;
+
+	protected $tipo;
 
 	public function __construct(){}
 
@@ -25,9 +28,9 @@ class  Permisao extends EntityManager implements IJsonSerializable
 		$this->acesso[] = $acesso;
 		return $this;
 	}
-	public function jsonSerialize(){
+	public function jsonSerialize() : array {
 		return [
-			'acesso' => $this->getAcesso();
+			'acesso' => $this->getAcesso()
 		];
 	}
 	public static function json($classe) :array {

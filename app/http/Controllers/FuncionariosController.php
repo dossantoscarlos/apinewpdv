@@ -3,12 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Interfaces\IApiDAO;
+use App\Http\Models\Entity\Funcionario;
 
-class FuncionarioController extends Controller implements IApiDAO
+class FuncionariosController extends Controller implements IApiDAO
 {
 	
 	public function show ($request, $response, $args){
-		return $this->response->withStatus(200);
+		$param = (object) $request->getParams();
+		dump($args);
+		die();
+		if(empty($param) ) : 
+			$f = $this->orm->getRepository(Funcionario::class)->findAllFuncionarios();
+			return $this->response->withJson($f);
+		:else:
+			$f = $this->orm->getRepository(Funcionario::class)->findFuncionario($param);
+			return $this->response->withJson($f);
+		endif;
 	}
 
 	public function select ($request, $response, $args){

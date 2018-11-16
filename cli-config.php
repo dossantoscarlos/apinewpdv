@@ -9,4 +9,4 @@ require __DIR__.'/src/bootstrap.php';
 ConsoleRunner::run(
 	ConsoleRunner::createHelperSet($entityManager)
 );
-	
+

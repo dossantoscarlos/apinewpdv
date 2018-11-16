@@ -76,7 +76,7 @@ class Funcionario extends EntityManager implements IJsonSerializable
 
 	/** 
 	 * @var String
-	 * @Column(type="string")
+	 * @Column(type="string" , unique=true)
 	 **/
 	protected $matricula;
 
@@ -88,7 +88,7 @@ class Funcionario extends EntityManager implements IJsonSerializable
 
 	/** 
 	 * @var int
-	 * @Column(type="int")
+	 * @Column(type="integer")
 	 **/
 	protected $pis;
 

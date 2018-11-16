@@ -60,7 +60,7 @@ class FornecedorRepository extends EntityRepository
 
   public function updateFornecedor ($obj) : int 
   {
-    $f =  new Fornecedor(); 
+    $f = new Fornecedor(); 
     $f->setCep($obj->cep);
     $f->setNumero($obj->numero);
     $f->setComplemento($obj->complemento);

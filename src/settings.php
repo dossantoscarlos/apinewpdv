@@ -1,7 +1,7 @@
 <?php
 define('APP_ROOT', __DIR__);
 
-require_once '../App/Validation/Validator.php';
+require_once '../app/Validation/Validator.php';
 $validator = new Validator();
 
 return [

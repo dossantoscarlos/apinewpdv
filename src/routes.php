@@ -2,6 +2,7 @@
 
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Psr\Http\Message\ResponseInterface
 use Web\Http\Controllers\PessoasController;
 use Web\Http\Controllers\ProdutosController;
 use Web\Http\Controllers\UsersController;

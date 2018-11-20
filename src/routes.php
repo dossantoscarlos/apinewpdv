@@ -11,8 +11,9 @@ use Web\Http\Controllers\FuncionariosController;
 use Web\Http\Controllers\FornecedoresController;
 // Routes
 //home
-$app->get('/', function ($request,$response,$args){
-	return $this->view->render('home.html');
+$app->get('/', function (Resquest $request, Response $response, array $args){
+	$response->getBody()->write("Hello");
+    return $response;
 });
 
 #tabela Pessoas

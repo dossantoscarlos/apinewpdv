@@ -9,6 +9,10 @@ use Web\Http\Controllers\RepresentantesController;
 use Web\Http\Controllers\FuncionariosController;
 use Web\Http\Controllers\FornecedoresController;
 // Routes
+//home
+$app->get('/', function ($request,$response,$args){
+	return $this->view->render('home.html');
+});
 
 #tabela Pessoas
 $app->get('/pessoas', PessoasController::class.':show');

@@ -5,7 +5,6 @@ use Slim\Http\Response;
 use Psr\Http\Message\ResponseInterface;
 use Web\Http\Controllers\PessoasController;
 use Web\Http\Controllers\ProdutosController;
-use Web\Http\Controllers\UsersController;
 use Web\Http\Controllers\RepresentantesController;
 use Web\Http\Controllers\FuncionariosController;
 use Web\Http\Controllers\FornecedoresController;

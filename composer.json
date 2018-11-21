@@ -31,10 +31,11 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/",
-            "Web\\Controllers\\": "/web/Http/Controllers/",
-            "Web\\Interface\\": "/web/Http/Controllers/Interface/",
-            "Web\\Entity\\": "/web/Http/Models/Entity/",
-            "Web\\Entity\\Repository\\": "/web/Http/Models/Repository/"
+            "Web\\": "./web/",
+            "Web\\Controllers\\": "./web/Http/Controllers/",
+            "Web\\Interface\\": "./web/Http/Controllers/Interface/",
+            "Web\\Entity\\": "./web/Http/Models/Entity/",
+            "Web\\Entity\\Repository\\": "./web/Http/Models/Repository/"
         }
     },
     "config": {

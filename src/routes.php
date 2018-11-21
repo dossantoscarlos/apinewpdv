@@ -31,7 +31,7 @@ $app->delete('/produtos/{code}' , ProdutosController::class.":drop");
 $app->put('/produtos/{code}' , ProdutosController::class.":update");
 
 #tabela Users
-$app->get('/users' , new \Web\Http\Controllers\UsersController.':show');
+$app->get('/users' , \Web\Http\Controllers\UsersController::class.':show');
 $app->post('/users', new \Web\Http\Controllers\UsersController.':create');
 $app->delete('/users/{user}' ,  new \Web\Http\Controllers\UsersController.":drop");
 $app->put('/users/{user}' ,  new \Web\Http\Controllers\UsersController.":update");

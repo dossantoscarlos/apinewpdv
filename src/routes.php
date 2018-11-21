@@ -8,7 +8,9 @@ use Web\Http\Controllers\ProdutosController;
 use Web\Http\Controllers\RepresentantesController;
 use Web\Http\Controllers\FuncionariosController;
 use Web\Http\Controllers\FornecedoresController;
+
 // Routes
+
 //home
 $app->get('/', function (Request $request, Response $response, array $args){
 	$response->getBody()->write("Hello");
@@ -28,7 +30,7 @@ $app->delete('/produtos/{code}' , ProdutosController::class.":drop");
 $app->put('/produtos/{code}' , ProdutosController::class.":update");
 
 #tabela Users
-$app->get('/users' , \Web\Http\Controllers\UsersController::class.':show');
+$app->get('/users' , \UsersController::class.':show');
 $app->post('/users', UsersController::class.':create');
 $app->delete('/users/{user}' , UsersController::class.":drop");
 $app->put('/users/{user}' , UsersController::class.":update");

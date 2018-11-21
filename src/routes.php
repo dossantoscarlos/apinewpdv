@@ -3,11 +3,11 @@
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Psr\Http\Message\ResponseInterface;
-use Web\Http\Controllers\PessoasController;
-use Web\Http\Controllers\ProdutosController;
-use Web\Http\Controllers\RepresentantesController;
-use Web\Http\Controllers\FuncionariosController;
-use Web\Http\Controllers\FornecedoresController;
+use Web\Controllers\PessoasController;
+use Web\Controllers\ProdutosController;
+use Web\Controllers\RepresentantesController;
+use Web\Controllers\FuncionariosController;
+use Web\Controllers\FornecedoresController;
 
 // Routes
 
@@ -30,7 +30,7 @@ $app->delete('/produtos/{code}' , ProdutosController::class.":drop");
 $app->put('/produtos/{code}' , ProdutosController::class.":update");
 
 #tabela Users
-$app->get('/users' , \UsersController::class.':show');
+$app->get('/users' , UsersController::class.':show');
 $app->post('/users', UsersController::class.':create');
 $app->delete('/users/{user}' , UsersController::class.":drop");
 $app->put('/users/{user}' , UsersController::class.":update");

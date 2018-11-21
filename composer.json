@@ -28,8 +28,8 @@
         "phpunit/phpunit": ">=4.8 < 6.0",
         "squizlabs/php_codesniffer": "^3.3"
     },
-    "autoload" : {
-        "psr-4" : {
+    "autoload": {
+        "psr-4": {
           "Web\\": "web/"
         }    
     },

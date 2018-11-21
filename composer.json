@@ -30,7 +30,7 @@
     },
     "autoload": {
         "psr-4": {
-          "Web\\": "web/"
+          "Web\\": "src/web/"
         }    
     },
 

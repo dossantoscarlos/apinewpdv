@@ -8,6 +8,7 @@ use Web\Controllers\ProdutosController;
 use Web\Controllers\RepresentantesController;
 use Web\Controllers\FuncionariosController;
 use Web\Controllers\FornecedoresController;
+use Web\Controllers\UsersController;
 
 // Routes
 

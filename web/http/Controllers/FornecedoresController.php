@@ -1,6 +1,6 @@
 <?php
 
-namespace \Web\Controllers;
+namespace \Web\Controllers\;
 
 use Web\Interfaces\IApiDAO;
 use Web\Models\Entity\Fornecedor;

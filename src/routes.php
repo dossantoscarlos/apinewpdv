@@ -3,12 +3,12 @@
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Psr\Http\Message\ResponseInterface;
-use Web\Http\Controllers\PessoasController;
-use Web\Http\Controllers\ProdutosController;
-use Web\Http\Controllers\RepresentantesController;
-use Web\Http\Controllers\FuncionariosController;
-use Web\Http\Controllers\FornecedoresController;
-use Web\Http\Controllers\UsersController;
+use App\Web\Http\Controllers\PessoasController;
+use App\Web\Http\Controllers\ProdutosController;
+use App\Web\Http\Controllers\RepresentantesController;
+use App\Web\Http\Controllers\FuncionariosController;
+use App\Web\Http\Controllers\FornecedoresController;
+use App\Web\Http\Controllers\UsersController;
 
 // Routes
 
@@ -31,10 +31,10 @@ $app->delete('/produtos/{code}' , ProdutosController::class.":drop");
 $app->put('/produtos/{code}' , ProdutosController::class.":update");
 
 #tabela Users
-$app->get('/users' ,\Web\Http\Controllers\UsersController::class.':show');
-$app->post('/users', \Web\Http\Controllers\UsersController::class.':create');
-$app->delete('/users/{user}', \Web\Http\Controllers\UsersController::class.":drop");
-$app->put('/users/{user}' , \Web\Http\Controllers\UsersController::class.":update");
+$app->get('/users' ,\App\Web\Http\Controllers\UsersController::class.':show');
+$app->post('/users', \App\Web\Http\Controllers\UsersController::class.':create');
+$app->delete('/users/{user}', \App\Web\Http\Controllers\UsersController::class.":drop");
+$app->put('/users/{user}' , \App\Web\Http\Controllers\UsersController::class.":update");
 
 #tabela Representantes
 $app->get('/representantes' , RepresentantesController::class.':show');

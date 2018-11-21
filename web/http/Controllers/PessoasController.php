@@ -1,8 +1,8 @@
 <?php 
-namespace Web\Http\Controllers;
+namespace \Web\Controllers\;
 
-use Web\Http\Controllers\Interfaces\IApiDAO;
-use Web\Http\Models\Entity\Pessoa;
+use Web\Interfaces\IApiDAO;
+use Web\Models\Entity\Pessoa;
 use Respect\Validation\Validator as V;
 
 class PessoasController extends Controller implements IApiDAO

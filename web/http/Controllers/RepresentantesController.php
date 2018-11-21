@@ -1,8 +1,8 @@
 <?php 
-namespace Web\Http\Controllers;
+namespace \Web\Controllers\;
 
-use Web\Http\Controllers\Interfaces\IApiDAO;
-use Web\Http\Models\Entity\Representante;
+use Web\Interfaces\IApiDAO;
+use Web\Models\Entity\Representante;
 use Respect\Validation\Validator as V;
 
 class RepresentantesController extends Controller implements IApiDAO

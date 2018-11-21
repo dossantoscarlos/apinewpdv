@@ -31,10 +31,10 @@ $app->delete('/produtos/{code}' , ProdutosController::class.":drop");
 $app->put('/produtos/{code}' , ProdutosController::class.":update");
 
 #tabela Users
-$app->get('/users' , UsersController::class.':show');
-$app->post('/users', UsersController::class.':create');
-$app->delete('/users/{user}' , UsersController::class.":drop");
-$app->put('/users/{user}' , UsersController::class.":update");
+$app->get('/users' , new \Web\Http\Controllers\UsersController.':show');
+$app->post('/users', new \Web\Http\Controllers\UsersController.':create');
+$app->delete('/users/{user}' ,  new \Web\Http\Controllers\UsersController.":drop");
+$app->put('/users/{user}' ,  new \Web\Http\Controllers\UsersController.":update");
 
 #tabela Representantes
 $app->get('/representantes' , RepresentantesController::class.':show');

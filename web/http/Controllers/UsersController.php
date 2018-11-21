@@ -1,10 +1,10 @@
 <?php
 
-namespace \Web\Http\Controllers\;
+namespace Web\Http\Controllers\;
 
-use Web\Interfaces\IApiDAO;
+use Web\Http\Controllers\Interfaces\IApiDAO;
 use Respect\Validation\Validator as V;
-use Web\Models\Entity\User;
+use Web\Http\Models\Entity\User;
 
 class UsersController extends Controller implements IApiDAO
 {

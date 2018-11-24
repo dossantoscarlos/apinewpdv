@@ -1,11 +1,11 @@
 <?php 
-namespace App\Web\Http\Models\Entity;
+namespace Web\Http\Models\Entity;
 
 use Doctrine\ORM\Annotation;
 use Doctrine\Common\Collections\ArrayCollection;
-use App\Web\Http\Models\IJsonSerializable;
+use Web\Http\Models\IJsonSerializable;
 use Doctrine\ORM\EntityManager;
-use App\Web\Cripto\BcryptCustom;
+use Web\Cripto\BcryptCustom;
 
 /** @Entity(repositoryClass="Web\Http\Models\Repository\UserRepository") @Table(name="users") **/
 class User extends EntityManager implements IJsonSerializable {

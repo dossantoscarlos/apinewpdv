@@ -3,12 +3,12 @@
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Psr\Http\Message\ResponseInterface;
-use App\Web\Http\Controllers\PessoasController;
-use App\Web\Http\Controllers\ProdutosController;
-use App\Web\Http\Controllers\RepresentantesController;
-use App\Web\Http\Controllers\FuncionariosController;
-use App\Web\Http\Controllers\FornecedoresController;
-use App\Web\Http\Controllers\UsersController;
+use Web\Http\Controllers\PessoasController;
+use Web\Http\Controllers\ProdutosController;
+use Web\Http\Controllers\RepresentantesController;
+use Web\Http\Controllers\FuncionariosController;
+use Web\Http\Controllers\FornecedoresController;
+use Web\Http\Controllers\UsersController;
 
 // Routes
 

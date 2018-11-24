@@ -1,6 +1,6 @@
 <?php 
 
-namespace Web\http\Models\;
+namespace Web\Http\Models;
 
 interface IJsonSerializable 
 {

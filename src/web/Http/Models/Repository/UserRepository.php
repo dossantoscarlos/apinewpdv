@@ -1,9 +1,9 @@
 <?php 
 
-namespace App\Web\Http\Entity\Repository\;
+namespace Web\Http\Models\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use App\Web\Http\Models\Entity\User;
+use Web\Http\Models\Entity\User;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\ORMInvalidArgumentException;
 use Doctrine\ORM\ORMException;

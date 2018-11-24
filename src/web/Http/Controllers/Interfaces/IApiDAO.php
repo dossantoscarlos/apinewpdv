@@ -1,6 +1,6 @@
 <?php 
 
-namespace App\Web\Interfaces\;
+namespace Web\Http\Controllers\Interfaces;
 
 interface IApiDAO {
 	

@@ -8,8 +8,12 @@ namespace Web\Http\Models\Entity;
 class ItemVendido
 {
 	
-	function __construct(argument)
-	{
-		# code...
-	}
+	/**
+	 * @Id
+	 * @var int
+	 * @Column(type="integer")
+	 * @GeneratedValue
+	 **/
+	private $id;
+
 }

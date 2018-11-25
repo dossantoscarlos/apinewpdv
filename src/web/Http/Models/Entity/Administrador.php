@@ -8,5 +8,12 @@ namespace Web\Http\Models\Entity;
  **/
 class Administrador 
 {
-	public function __construct(){}
+	/**
+	 * @Id
+	 * @var int
+	 * @Column(type="integer")
+	 * @GeneratedValue
+	 **/
+	private $id;
+
 }

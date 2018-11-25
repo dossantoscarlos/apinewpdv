@@ -12,6 +12,12 @@ use Web\Http\Models\IJsonSerializable;
  **/
 class Cep {
 
+	/**
+	 * @Id
+	 * @var int
+	 * @Column(type="integer")
+	 * @GeneratedValue
+	 **/
 	private $id;
 
 	protected $cep;

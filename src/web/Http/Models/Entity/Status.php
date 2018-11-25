@@ -6,9 +6,17 @@ use Doctrine\ORM\Annotation;
 use Doctrine\ORM\EntityManager;
 use Web\Http\Models\IJsonSerializable;
 
+/** @Entity @Table(name="Status")**/
 class Status extends EntityManager implements IJsonSerializable
 {
-  protected $id;
+ /**
+   * @Id
+   * @var int
+   * @Column(type="integer")
+   * @GeneratedValue
+   **/
+  private $id;
+
 
   protected $tipo;
   

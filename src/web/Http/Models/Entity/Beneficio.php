@@ -7,5 +7,12 @@ namespace Web\Http\Models\Entity;
  **/
 class Beneficio 
 {
-	public function __construct() {}
+	/**
+	 * @Id
+	 * @var int
+	 * @Column(type="integer")
+	 * @GeneratedValue
+	 **/
+	private $id;
+
 }

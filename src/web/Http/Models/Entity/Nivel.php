@@ -6,9 +6,12 @@ namespace Web\Http\Models\Entity;
  **/
 class Nivel
 {
-	
-	function __construct()
-	{
-		# code...
-	}
+	/**
+	 * @Id
+	 * @var int
+	 * @Column(type="integer")
+	 * @GeneratedValue
+	 **/
+	private $id;
+
 }

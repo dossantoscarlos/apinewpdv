@@ -7,7 +7,6 @@ use Web\Http\Models\Entity\Funcionario;
 
 class FuncionariosController extends Controller implements IApiDAO
 {
-	
 	public function show ($request, $response, $args){
 		$param = (object) $request->getParams();
 		dump($args);

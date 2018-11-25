@@ -1,5 +1,6 @@
 {% extends 'layout.html' %}
 {% block title %}Bem vindo{% endblock %}
+{% block section %}
 <style type="text/css">
 .painel {
 	display: inline-block;
@@ -7,7 +8,6 @@
 	margin: 0 auto;
 	margin-top: 10%;
 }
-
 </style>
 <div class="painel">
 	<section>
@@ -24,7 +24,7 @@
 					</p>
 				</dd>
 			</dt>
-			<div >
+			<div class="">
 				<h1>Redes Socias</h1>
 				<ul>
 					<li><a href='https://www.Facebook.com'>Facebook</a></li>
@@ -36,3 +36,4 @@
 		</article>
 	</section>
 </div>
+{% endblock %}

@@ -13,9 +13,7 @@ use Web\Http\Controllers\UsersController;
 // Routes
 
 //home
-$app->get('/', function (Request $request, Response $response, array $args){
-    return $this->view->render('home.html');
-});
+$app->get('/', \Web\Http\Controllers\HomeController::class.':show');
 
 #tabela Pessoas
 $app->get('/pessoas', PessoasController::class.':show');

@@ -3,7 +3,7 @@
 namespace Web\Http\Models\Entity;
 
 /**
- * @Entity;
+ * @Entity
  * @Table(name="administradores")
  **/
 class Administrador 

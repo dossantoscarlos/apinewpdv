@@ -1,5 +1,5 @@
 <?php 
-	namespace App\Web\Validation;
+	namespace Web\Validation;
 
 	use Respect\Validation\Validator as Respect;
 	use Respect\Validation\Exceptions\NestedValidationException;

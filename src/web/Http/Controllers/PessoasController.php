@@ -1,14 +1,14 @@
 <?php 
-namespace \Web\Controllers\;
+namespace Web\Http\Controllers;
 
-use Web\Interfaces\IApiDAO;
-use Web\Models\Entity\Pessoa;
+use Web\Http\Controllers\Interfaces\IApiDAO;
+use Web\Http\Models\Entity\Pessoa;
 use Respect\Validation\Validator as V;
 
 class PessoasController extends Controller implements IApiDAO
 {
 	private $code =['201' => 'Criado com sucesso'];
-[]~=-08iu
+
 	public function show($request,$response,$args)
 	{ 
 		$uriParam = $request->getUri()->getQuery();

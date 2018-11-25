@@ -1,5 +1,5 @@
 <?php 
-namespace \Web\Entity\Repository\;
+namespace Web\Http\Models\Repository\;
 
 use Doctrine\ORM\EntityRepository;
 

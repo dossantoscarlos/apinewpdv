@@ -6,7 +6,7 @@ use Doctrine\ORM\Annotations;
 use Doctrine\ORM\EntityManager;
 use Web\Http\Models\IJsonSerializable;
 /**
- * @Entity(repositoryClass="App\Http\Models\Repository\FornecedorRepository") @Table(name="Fornecedores")
+ * @Entity(repositoryClass="Web\Http\Models\Repository\FornecedorRepository") @Table(name="Fornecedores")
  **/
 class grupo extends EntityManager implements IJsonSerializable 
 {

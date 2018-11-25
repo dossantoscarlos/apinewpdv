@@ -1,9 +1,9 @@
 <?php 
 
-namespace Web\Controllers\;
+namespace Web\Http\Controllers;
 
-use Web\Interfaces\IApiDAO;
-use Web\Models\Entity\Funcionario;
+use Web\Http\Interfaces\IApiDAO;
+use Web\Http\Models\Entity\Funcionario;
 
 class FuncionariosController extends Controller implements IApiDAO
 {

@@ -14,8 +14,7 @@ use Web\Http\Controllers\UsersController;
 
 //home
 $app->get('/', function (Request $request, Response $response, array $args){
-	$response->getBody()->write("Hello");
-    return $response;
+    return $this->view->render('home.html');
 });
 
 #tabela Pessoas

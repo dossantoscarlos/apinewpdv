@@ -12,7 +12,6 @@ use Doctrine\ORM\ORMException;
 class UserRepository  extends EntityRepository
 {  
 	
-
 	public function findUserAll() :array 
 	{
 		return User::json($this->findAll());

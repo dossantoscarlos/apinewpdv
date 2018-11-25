@@ -1,8 +1,8 @@
 <?php 
 
-namespace \Web\Controllers\;
+namespace Web\Controllers;
 
-use Web\Interfaces\IApiDAO;
+use Web\Http\Models\Interfaces\IApiDAO;
 
 class PermisaoController extends Controller implements IApiDAO
 {

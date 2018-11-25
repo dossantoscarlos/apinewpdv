@@ -7,6 +7,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
 use Web\Http\Models\IJsonSerializable;
 
+/**
+ * @Entity @Table(name="ceps")
+ **/
 class Cep {
 
 	private $id;

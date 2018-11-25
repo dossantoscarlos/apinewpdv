@@ -1,10 +1,10 @@
 <?php 
 
-namespace \Web\Controllers\;
+namespace Web\Http\Controllers;
 
-use Web\Interfaces\IApiDAO;
+use Web\Http\Controllers\Interfaces\IApiDAO;
 use Respect\Validation\Validator as V;
-use Web\\Models\Entity\Produto;
+use Web\Http\Models\Entity\Produto;
 
 class ProdutosController extends Controller implements IApiDAO
 {

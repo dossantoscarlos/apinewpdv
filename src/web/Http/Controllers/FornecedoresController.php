@@ -1,9 +1,9 @@
 <?php
 
-namespace \Web\Controllers\;
+namespace Web\Http\Controllers;
 
-use Web\Interfaces\IApiDAO;
-use Web\Models\Entity\Fornecedor;
+use Web\Http\Controllers\Interfaces\IApiDAO;
+use Web\Http\Models\Entity\Fornecedor;
 
 class FornecedoresController extends Controller implements IApiDAO
 {

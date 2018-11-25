@@ -1,8 +1,8 @@
 <?php 
 
-namespace \Web\Controllers\;
+namespace Web\Http\Controllers;
 
-use Web\Controllers\Interfaces\IApiDAO;
+use Web\Http\Controllers\Interfaces\IApiDAO;
 
 class EstoqueController extends Controller implements IApiDAO
 {

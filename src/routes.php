@@ -9,11 +9,11 @@ use Web\Http\Controllers\RepresentantesController;
 use Web\Http\Controllers\FuncionariosController;
 use Web\Http\Controllers\FornecedoresController;
 use Web\Http\Controllers\UsersController;
-use Web\Http\Controllers\HomeController;
+use Web\Http\Controllers\HomesController;
 // Routes
 
 //home
-$app->get('/', HomeController::class.':show');
+$app->get('/', HomesController::class.':show');
 
 #tabela Pessoas
 $app->get('/pessoas', PessoasController::class.':show');

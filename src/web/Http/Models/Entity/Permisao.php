@@ -45,13 +45,12 @@ class Permisao extends EntityManager implements IJsonSerializable
 		return $this->tipo;
 	}
 
-	public function setTipo($tipo): void {
-		return $this->tipo = $tipo;
+	public function setTipo($tipo) : void {
+		$this->tipo = $tipo;
 	}
 
-	public function setAcesso($acesso) {
+	public function setAcesso($acesso) : void {
 		$this->acesso[] = $acesso;
-		return $this;
 	}
 	public function jsonSerialize() : array {
 		return [

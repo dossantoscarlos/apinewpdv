@@ -58,10 +58,9 @@ $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/web/Http/
 $conn = array(
 	'driver' => 'pdo_mysql',
 	'host' => 'us-cdbr-iron-east-01.cleardb.net',
-	'dbname' => 'heroku_6dc08d68943683e',
-	'user' => 'bae264541a2f71',
-	'password' => '61aae678',
-	
+	'dbname' => 'heroku_5774f737433ca28',
+	'user' => 'b043b94b560403',
+	'password' => 'e2f7ad03',
 );
 /**
  * Instância do Entity Manager

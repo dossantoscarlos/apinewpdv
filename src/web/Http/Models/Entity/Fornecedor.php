@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityManager;
 use Web\Http\Models\IJsonSerializable;
 
 /**
- * @Entity(repositoryClass="Web\Http\Models\Repository\FornecedorRepository") @Table(name="Fornecedores")
+ * @Entity(repositoryClass="Web\Http\Models\Repository\FornecedorRepository") @Table(name="fornecedores")
  **/
 class Fornecedor extends EntityManager implements IJsonSerializable 
 {

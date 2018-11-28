@@ -6,7 +6,7 @@ use Doctrine\ORM\Annotation;
 use Doctrine\ORM\EntityManager;
 use Web\Http\Models\IJsonSerializable;
 
-/** @Entity @Table(name="Status")**/
+/** @Entity @Table(name="status")**/
 class Status extends EntityManager implements IJsonSerializable
 {
  /**

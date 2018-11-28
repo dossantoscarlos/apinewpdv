@@ -3,7 +3,7 @@
 namespace Web\Http\Models\Entity;
 
 /** 
- * @Entity @Table(name="NotasFiscais")
+ * @Entity @Table(name="notasFiscais")
  **/
 class NotaFiscal {
 	/**

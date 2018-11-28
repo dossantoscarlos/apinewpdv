@@ -4,7 +4,7 @@ namespace Web\Http\Models\Entity;
 
 /**
  * @Entity
- * @Table(name="CodigosBarras")
+ * @Table(name="codigosBarras")
  **/
  class CodigoBarra {
 	/**

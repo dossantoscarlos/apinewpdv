@@ -2,7 +2,7 @@
 namespace Web\Http\Models\Entity;
 
 /**
- * @Entity @Table(name="Niveis")
+ * @Entity @Table(name="niveis")
  **/
 class Nivel
 {

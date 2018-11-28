@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
 use Web\Http\Models\IJsonSerializable;
 
-/** @Entity @Table(name="Estoques")**/
+/** @Entity @Table(name="estoques")**/
 class Estoque  extends EntityManager implements IJsonSerializable
 {
 

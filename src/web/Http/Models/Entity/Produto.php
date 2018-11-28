@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Web\Http\Models\IJsonSerializable;
 use Doctrine\ORM\EntityManager;
 /**
- * @Entity(repositoryClass="Web\Http\Models\Repository\ProdutoRepository") @Table(name="Produtos")
+ * @Entity(repositoryClass="Web\Http\Models\Repository\ProdutoRepository") @Table(name="produtos")
  **/
 class Produto extends EntityManager implements IJsonSerializable 
 {

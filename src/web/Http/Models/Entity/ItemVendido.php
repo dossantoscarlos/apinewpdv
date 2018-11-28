@@ -3,7 +3,7 @@ namespace Web\Http\Models\Entity;
 
 /**
  * @Entity 
- * @Table(name="ItensVendidos")
+ * @Table(name="itensVendidos")
  **/
 class ItemVendido
 {

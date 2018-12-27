@@ -33,6 +33,9 @@ $app->post('/users', UsersController::class.':create');
 $app->delete('/users/{user}', UsersController::class.":drop");
 $app->put('/users/{user}', UsersController::class.":update");
 
+#Auth
+$app->post('/Auth', AuthController::class.':select');
+
 #tabela Representantes
 $app->get('/representantes' , RepresentantesController::class.':show');
 $app->post('/representantes', RepresentantesController::class.':create');
@@ -49,4 +52,3 @@ $app->get('/funcionarios[/{matr}]' , FuncionariosController::class.':show');
 $app->post('/funcionarios', FuncionariosController::class.':create');
 $app->put('/funcionarios/{matr}' , FuncionariosController::class.':update');
 $app->delete('/funcionarios/{matr}' , FuncionariosController::class.":drop");
-

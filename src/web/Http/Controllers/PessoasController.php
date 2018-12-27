@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Web\Http\Controllers;
 
 use Web\Http\Controllers\Interfaces\IApiDAO;
@@ -10,15 +10,15 @@ class PessoasController extends Controller implements IApiDAO
 	private $code =['201' => 'Criado com sucesso'];
 
 	public function show($request,$response,$args)
-	{ 
+	{
 		$uriParam = $request->getUri()->getQuery();
-		
+
 		if (!empty($uriParam)) {
 			$objeto = (object) $request->getParams();
-			
+
 			if (isset($objeto->nome)){
 				$error = $this->validator->validate($request,[
-					'nome' => V::Alpha()->noWhitespace()->notEmpty()
+					'nome' => V::Alpha()->notEmpty()
 				]);
 			}elseif (isset($objeto->sobrenome)) {
 				$error = $this->validator->validate($request,[
@@ -35,10 +35,10 @@ class PessoasController extends Controller implements IApiDAO
 				if (isset($objeto->nome) || isset($objeto->sobrenome)){
 
 					$pessoa = $this->orm->getRepository(Pessoa::class)->findPessoa($objeto);
-				
+
 					$pessoa = $this->orm->getRepository(Pessoa::class)->findCPF($objeto);
 				}
-				return $this->response->withStatus(200)->withJson($pessoa);
+				return $this->response->withJson($pessoa,200);
 
 			}else{
 				$errors[] = (object) $error;
@@ -46,13 +46,13 @@ class PessoasController extends Controller implements IApiDAO
 			}
 		}else{
 			$pessoa = $this->orm->getRepository(Pessoa::class)->findAllPessoas();
-			return $this->response->withStatus(200)->withJson($pessoa);
+			return $this->response->withJson($pessoa,200);
 		}
 	}
 
 
 	public function create($request,$response,$args)
-	{ 			
+	{
 		$objeto = (object) $request->getParams();
 		$error = $this->validator->validate($request,[
 			'nome' => V::Alpha()->noWhitespace()->notEmpty(),
@@ -69,28 +69,27 @@ class PessoasController extends Controller implements IApiDAO
 		}else{
 			$errors[] = (object) $error;
 			return $this->response->withJson($errors);
-		}	
+		}
 	}
 
 	public function update($request,$response,$args)
-	{ 
+	{
 		if (is_numeric($args['cpf']) ) {
 			$objeto = (object) $request->getParams();
 			$obj = (object) $args;
 			$pessoa = $this->orm->getRepository(Pessoa::class)->atualizarPessoa($obj, $objeto);
-			return $this->response->withStatus($pessoa);	
+			return $this->response->withStatus($pessoa);
 		}else{
 			return $this->response->withStatus(400);
 		}
-
 	}
 
 	public function drop($request,$response,$args)
-	{ 
+	{
 		if (is_numeric($args['cpf']) ) {
 			$obj = (object) $args;
 			$pessoa = $this->orm->getRepository(Pessoa::class)->deletarPessoa($obj);
-			return $this->response->withStatus($pessoa);	
+			return $this->response->withStatus($pessoa);
 		}else{
 			return $this->response->withStatus(405);
 		}

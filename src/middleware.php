@@ -13,7 +13,7 @@ $app->add(function (Request $request, Response $response, callable $next) {
         // permanently redirect paths with a trailing slash
         // to their non-trailing counterpart
         $uri = $uri->withPath(substr($path, 0, -1));
-        
+
         if($request->getMethod() == 'GET') {
             return $response->withRedirect((string)$uri, 301);
         }
@@ -32,8 +32,8 @@ $app->add(function ($request, $response, $next) {
         function ($input) {
             return json_decode($input, true);
         }
-    );
 
+      );
     return $next($request, $response);
 });
 
@@ -43,8 +43,8 @@ $app->add(function ($request, $response, $next) {
 $app->add(function ($req, $res, $next) {
     $response = $next($req, $res);
     return $response
-            ->withHeader('Access-Control-Allow-Origin', '*')
-            ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+            ->withHeader('Access-Control-Allow-Origin', '*' )
+            ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With,XMLHttpRequest, Content-Type, Accept, Origin, Authorization,crossDomain')
             ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
 });
 

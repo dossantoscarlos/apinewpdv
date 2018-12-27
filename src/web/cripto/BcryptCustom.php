@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Cripto;
+namespace Web\Cripto;
 
 class BcryptCustom {
 
@@ -8,7 +8,7 @@ class BcryptCustom {
 
 	private $custo = "08";
 
-	public function cryptHash($senha) : String 
+	public function cryptHash($senha) : String
 	{
 		return crypt($senha, '$2a$' . $this->custo . '$' . $this->salt . '$');
 	}
@@ -17,4 +17,4 @@ class BcryptCustom {
 	{
 		return (crypt($senha,$hash)) ? true : false;
 	}
-}	
+}

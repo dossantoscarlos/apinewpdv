@@ -12,31 +12,41 @@ class UsersController extends Controller implements IApiDAO
 	public function show($request, $response, $args)
 	{
 		$uri = $request->getUri()->getQuery();
+		$userRepo = $this->orm->getRepository(User::class);
 
 		if (!empty($uri)) {
 			$obj = (object)$request->getParams();
+
 			if (isset($obj->user)) {
 				$error = $this->validator->validate($request, [
 					'user' => V::Alnum()->noWhitespace()->notEmpty(),
 				]);
+
 				if ($error == null) {
-					$users = $this->orm->getRepository(User::class)->findUser($obj);
-					return $this->response->withJson($users);
+					$users = $userRepo->findUser($obj);
+					$user = ['users' => $users];
+					return $this->response->withJson($user);
+
 				} else {
 					$errors[] = (object)$error;
 					return $this->response->withJson($errors);
 				}
+
 			} else {
 				return $this->response->withStatus(302);
 			}
+
 		} else {
-			return $this->response->withJson($this->orm->getRepository(User::class)->findUserAll());
+			$user = $userRepo->findUserAll();
+			$users = ['users' => $user ];
+			return $this->response->withJson($users,200);
 		}
 	}
 
-	public function select($request, $response, $args)
+	public function autenticar($request, $response, $args)
 	{
-		return $this->response->withStatus(200);
+		$obj = (object) ['casa','rua'];
+		return $this->response->withJson($obj);
 	}
 
 	public function create($request, $response, $args)

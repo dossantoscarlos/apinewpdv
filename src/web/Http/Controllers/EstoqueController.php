@@ -6,7 +6,7 @@ use Web\Http\Controllers\Interfaces\IApiDAO;
 
 class EstoqueController extends Controller implements IApiDAO
 {
-	
+
 	public function show ($request, $response, $args){
 		return $this->response->withStatus(200);
 	}

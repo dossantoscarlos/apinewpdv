@@ -10,6 +10,7 @@ use Web\Http\Controllers\FuncionariosController;
 use Web\Http\Controllers\FornecedoresController;
 use Web\Http\Controllers\UsersController;
 use Web\Http\Controllers\HomesController;
+use Web\Http\Controllers\Auth\AuthController;
 // Routes
 
 //home
@@ -34,7 +35,7 @@ $app->delete('/users/{user}', UsersController::class.":drop");
 $app->put('/users/{user}', UsersController::class.":update");
 
 #Auth
-$app->post('/Auth', AuthController::class.':select');
+$app->post('/auth', AuthController::class.':select');
 
 #tabela Representantes
 $app->get('/representantes' , RepresentantesController::class.':show');

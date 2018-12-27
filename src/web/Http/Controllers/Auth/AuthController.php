@@ -5,10 +5,10 @@
 
   class AuthController extends Controller
   {
-    public function select($req,$res,$args)
+    public function select($req, $res, $args)
     {
       $auth = new Auth();
-      $ath = ['auth' => $auth->Authentication($req->user,$req->passw)];
+      $ath = ['auth' => $auth->Authentication('valor','teste')];
       return $this->res->withJson($ath);
     }
   }

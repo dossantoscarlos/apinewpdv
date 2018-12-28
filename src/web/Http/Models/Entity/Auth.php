@@ -1,6 +1,6 @@
 <?php
 
-namespace Web\Http\Models\Entity\Auth;
+namespace Web\Http\Models\Entity;
 
 use Doctrine\ORM\Annotation;
 use Web\Http\Models\Entity\User;

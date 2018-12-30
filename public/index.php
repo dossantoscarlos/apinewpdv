@@ -30,21 +30,3 @@ require __DIR__ . '/../src/routes.php';
 
 // Run app
 $app->run();
-
-// use Slim\App;
-// use Slim\Container;
-// /** @var Container $cnt */
-// $cnt = require_once __DIR__ . '/../src/bootstrap.php';
-// /** @var App $app */
-// $app = $cnt[App::class];
-
-// // Set up dependencies
-// require __DIR__ . '/../src/dependencies.php';
-
-// // Register middleware
-//  require __DIR__ . '/../src/middleware.php';
-
-// // Register routes
-// require __DIR__ . '/../src/routes.php';
-// $app->run();
-

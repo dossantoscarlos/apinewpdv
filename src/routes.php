@@ -11,6 +11,7 @@ use Web\Http\Controllers\FornecedoresController;
 use Web\Http\Controllers\UsersController;
 use Web\Http\Controllers\HomesController;
 use Web\Http\Controllers\Auth\AuthController;
+
 // Routes
 
 //home

@@ -13,7 +13,7 @@ class BcryptCustom {
 		return crypt($senha, '$2a$' . $this->custo . '$' . $this->salt . '$');
 	}
 
-	public function verificaHash($hash, $senha) : Boolean
+	public static function verificaHash($hash, $senha) : Boolean
 	{
 		return (crypt($senha,$hash)) ? true : false;
 	}

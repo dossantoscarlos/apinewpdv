@@ -30,13 +30,21 @@ class User extends EntityManager implements IJsonSerializable {
 	 **/
 	protected $passw;
 
+
 	protected $status;
 
 	protected $permision;
 
 	protected $funcionarios;
 
-	public function __construct(){}
+	public function __construct(Array $data = []){
+		if (!empty($data['username']))
+           $this->username = $data['username'];
+
+        if (!empty($data['password'])) {
+            $this->password = $this->hashPassw($data['password']);
+        }
+	}
 
 	public function getId() : int
 	{
@@ -70,13 +78,22 @@ class User extends EntityManager implements IJsonSerializable {
 		return $hash;
 	}
 
+	public function __toArray()
+  {
+     $data = [];
+     foreach ($this as $k=>$v){
+     		$data[$k] = $v;
+		 }
+     return $data;
+  }
+
 	public function jsonSerialize() : array {
 		return [
 			'id' => $this->getId(),
 			'user' => $this->getUser(),
 		];
 	}
-  
+
 	public static function json($classe): array {
 		$result = null ;
 		if (!empty($classe)){

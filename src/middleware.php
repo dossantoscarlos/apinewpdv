@@ -1,10 +1,11 @@
 <?php
-// Application middleware
-
-// e.g: $app->add(new \Slim\Csrf\Guard);
 
 use Psr\Http\Message\RequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
+use Slim\Csrf\Guard;
+use Web\Model\Entity\User;
+
+$app->add(new Guard);
 
 $app->add(function (Request $request, Response $response, callable $next) {
     $uri = $request->getUri();
@@ -21,7 +22,6 @@ $app->add(function (Request $request, Response $response, callable $next) {
             return $next($request->withUri($uri), $response);
         }
     }
-
     return $next($request, $response);
 });
 
@@ -38,6 +38,27 @@ $app->add(function ($request, $response, $next) {
 });
 
 
+$auth = function () use($app) {
+    if (!isset($_SESSION['user']) or !is_array($_SESSION['user']))
+        $app->redirect('/login');
+};
+
+//basic-http-auth
+//
+// $app->add(new Tuupola\Middleware\HttpBasicAuthentication([
+//     "path" => "/",
+//     "realm" => "Protected",
+//    "users" => [
+//         "username" => "t00r",
+//         "password" => "passw0rd"
+//     ],
+//     "error" => function ($response, $arguments) {
+//         $data = [];
+//         $data["status"] = "error";
+//         $data["message"] = $arguments["message"];
+//         return $response->write(json_encode($data, JSON_UNESCAPED_SLASHES));
+//     }
+// ]));
 
 //Responsavel por liberar o compartilhamento das informacoes do restfull
 $app->add(function ($req, $res, $next) {

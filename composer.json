@@ -34,13 +34,14 @@
     "autoload": {
         "psr-4": {
           "Web\\": "src/web/"
-        }    
+          }    
     },
 
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/",
             "Web\\": "src/web/"
+          
         }
     },
     "config": {

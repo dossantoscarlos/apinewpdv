@@ -25,20 +25,40 @@ $app->add(new AccessApi);
 $app->add(new RegisterMethodRoute);
 
 //basic-http-auth
-// $app->add(new HttpBasicAuthentication([
-//     "path" => "/",
-//     "realm" => "Protected",
-//    "users" => [
-//         "username" => "carlos",
-//         "password" => "1004"
-//     ],
-//     "error" => function ($response, $arguments) {
-//         $data = [];
+$app->add(new HttpBasicAuthentication([
+    "path" => "/",
+    "realm" => "Protected",
+    "secure" => true,
+    "relaxed" => ['localhost'],
+    "users" => [
+        "username" => "carlos",
+        "password" => "1004"
+    ],
+    "error" => function ($response, $arguments) {
+        $data = [];
+        $data["status"] = "error";
+        $data["message"] = $arguments["message"];
+        return $response->write(json_encode($data, JSON_UNESCAPED_SLASHES));
+    },
+    "done" => function ($response, $arguments){
+        return redirect('/users');
+    }
+]));
+
+// $app->add(new Tuupola\Middleware\JwtAuthentication([
+//     "secret" => "supersecretkeyyoushouldnotcommittogithub",
+//     "secure" => true,
+//     "relaxed" => ["localhost"],
+//     "rules" => [
+//         new Tuupola\Middleware\JwtAuthentication\RequestPathRule([
+//             "path" => "/",
+//             "ignore" => []
+//         ]),
+//     ],    "error" => function ($response, $arguments) {
 //         $data["status"] = "error";
 //         $data["message"] = $arguments["message"];
-//         return $response->write(json_encode($data, JSON_UNESCAPED_SLASHES));
-//     },
-//     "done" => function ($response, $arguments){
-//         return redirect('/users');
+//         return $response
+//             ->withHeader("Content-Type", "application/json")
+//             ->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
 //     }
 // ]));

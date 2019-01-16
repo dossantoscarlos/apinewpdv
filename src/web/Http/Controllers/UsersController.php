@@ -28,7 +28,7 @@ class UsersController extends Controller implements IApiDAO
 					return $this->response->withJson($user);
 
 				} else {
-					$errors[] = (object)$error;
+					$errors[] = (object) $error;
 					return $this->response->withJson($errors);
 				}
 
@@ -74,6 +74,7 @@ class UsersController extends Controller implements IApiDAO
 	public function drop($request, $response, $args)
 	{
 		$obj = (object)$args;
+
 		if (isset($obj->user)) {
 			$user = $this->orm->getRepository(User::class)->removeUser($obj);
 			return $this->response->withStatus($user);

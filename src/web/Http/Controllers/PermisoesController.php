@@ -1,12 +1,12 @@
-<?php 
+<?php
+namespace Web\Http\Controllers;
 
-namespace Web\Controllers;
-
-use Web\Http\Models\Interfaces\IApiDAO;
+use Web\Http\Constroller\Interfaces\IApiDAO;
+use Web\Http\Models\Entity\Permisao;
 
 class PermisaoController extends Controller implements IApiDAO
 {
-	
+
 	public function show ($request, $response, $args){
 		return $this->response->withStatus(200);
 	}

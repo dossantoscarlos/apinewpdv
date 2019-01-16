@@ -8,9 +8,10 @@ use Doctrine\ORM\EntityManager;
 use Web\Http\Models\IJsonSerializable;
 
 /**
- * @Entity @Table(name="ceps")
+ * @Entity @Table(name="enderecos")
  **/
-class Cep {
+class Endereco extends EntityManager implements IJsonSerializable
+{
 
 	/**
 	 * @Id
@@ -32,9 +33,28 @@ class Cep {
 
 	public function __construct(){}
 
-	public function getId() : int {
-		return $this->id;
-	}
+		public function getId() : int {
+			return $this->id;
+		}
+
+		public function jsonSerialize() : array {
+			return [
+				'id' => $this->getId(),
+			];
+		}
+
+		public static function json($classe) :array {
+			$result = null ;
+			if (!empty($classe)){
+				foreach ($classe as $key => $value)
+				{
+					$result[] = $classe[$key]->jsonSerialize();
+				}
+				return $result;
+			}else {
+				return array('Message' => 'Busca nao retornou resultados');
+			}
+		}
 
 	public function getCep() : int {
 		return $this->cep;

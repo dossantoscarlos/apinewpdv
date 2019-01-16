@@ -1,0 +1,10 @@
+<?php
+namespace Web\Http\Models\EntityRepository;
+
+use Doctrine\ORM\EntityRepository;
+use Web\Http\Models\Entity\Comprovante;
+
+class ComprovanteRepository extends EntityRepository
+{
+
+}

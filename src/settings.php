@@ -9,6 +9,10 @@ return [
         'renderer' => [
             'template_path' => APP_ROOT . '/../resourcers/',
         ],
+        // jwt settings
+        "jwt" => [
+            'secret' => 'supersecretkeyyoushouldnotcommittogithub'
+        ],
         'view' => [
             'template_twig' => APP_ROOT . '/../resourcers/',
             'cache' =>APP_ROOT.'/../cache/',

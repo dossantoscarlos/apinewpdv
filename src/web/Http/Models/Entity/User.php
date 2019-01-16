@@ -30,20 +30,14 @@ class User extends EntityManager implements IJsonSerializable {
 	 **/
 	protected $passw;
 
-
 	protected $status;
 
 	protected $permision;
 
 	protected $funcionarios;
 
-	public function __construct(Array $data = []){
-		if (!empty($data['username']))
-           $this->username = $data['username'];
+	public function __construct(){
 
-        if (!empty($data['password'])) {
-            $this->password = $this->hashPassw($data['password']);
-        }
 	}
 
 	public function getId() : int
@@ -78,14 +72,27 @@ class User extends EntityManager implements IJsonSerializable {
 		return $hash;
 	}
 
-	public function __toArray()
-  {
-     $data = [];
-     foreach ($this as $k=>$v){
-     		$data[$k] = $v;
-		 }
-     return $data;
-  }
+	public function auth($classe) : array {
+		$result=null;
+		if (!empty($classe))
+		{
+			foreach ($classe as $key => $value)
+			{
+				$result[] = $classe[$key]->login();
+			}
+			return $result;
+		} else {
+			return array(['error'=>true, 'Message' => 'Busca nao retornou resultados']);
+		}
+	}
+
+	public function login() : array{
+		return [
+			'id' => $this->getId(),
+			'user' => $this->getUser(),
+			'pass' => $this->getPassw(),
+		];
+	}
 
 	public function jsonSerialize() : array {
 		return [
@@ -93,6 +100,7 @@ class User extends EntityManager implements IJsonSerializable {
 			'user' => $this->getUser(),
 		];
 	}
+
 
 	public static function json($classe): array {
 		$result = null ;
@@ -102,7 +110,7 @@ class User extends EntityManager implements IJsonSerializable {
 			}
 			return $result;
 		}else {
-			return array('Message' => 'Busca nao retornou resultados');
+			return array(['error'=>true, 'Message' =>'Busca nao retornou resultados']);
 		}
 	}
 }

@@ -18,13 +18,28 @@ class Estoque  extends EntityManager implements IJsonSerializable
 	 **/
 	private $id;
 
-
+	/**
+	 * @var int
+	 * @Column(type="integer")
+	 **/
 	protected $qntAtual;
 
+	/**
+	 * @var int
+	 * @Column(type="integer")
+	 **/
 	protected $qntMinima;
 
+ /**
+	* @var int
+ 	* @Column(type="integer")
+	**/
 	protected $qntRecebida;
 
+	/**
+	 * @var int
+	 * @Column(type="integer" , unique = true)
+	 **/
 	protected $produtos;
 
 	public function __construct(){

@@ -1,13 +1,18 @@
-<?php 
+<?php
 namespace Web\Http\Models\Entity;
 
+use Doctrine\ORM\Annotation;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\EntityManager;
+use Web\Http\Models\IJsonSerializable;
+
 /**
- * @Entity 
+ * @Entity
  * @Table(name="itensVendidos")
  **/
-class ItemVendido
+class ItemVendido extends EntityManager implements IJsonSerializable
 {
-	
+
 	/**
 	 * @Id
 	 * @var int
@@ -15,5 +20,26 @@ class ItemVendido
 	 * @GeneratedValue
 	 **/
 	private $id;
+	public function getId() : int {
+		return $this->id;
+	}
 
+	public function jsonSerialize() : array {
+		return [
+			'id' => $this->getId(),
+		];
+	}
+
+	public static function json($classe) :array {
+		$result = null ;
+		if (!empty($classe)){
+			foreach ($classe as $key => $value)
+			{
+				$result[] = $classe[$key]->jsonSerialize();
+			}
+			return $result;
+		}else {
+			return array('Message' => 'Busca nao retornou resultados');
+		}
+	}
 }

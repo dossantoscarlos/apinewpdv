@@ -8,7 +8,7 @@ class SangriaRepository extends EntityRepository implements IRepository
 {
   public function show() : array
   {
-    return ["code" => 200];
+    return Sangria::json($this->findAll());
   }
 
   public function find($obj) : array

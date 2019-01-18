@@ -8,7 +8,7 @@
  {
    public function show() : array
    {
-     return ["code" => 200];
+     return Endereco::json($this->findAll());
    }
 
    public function find($obj) : array

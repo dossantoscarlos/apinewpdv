@@ -8,7 +8,7 @@ class OperadorRepository extends EntityRepository implements IRepository
 {
   public function show() : array
   {
-    return ["code" => 200];
+    return Operador::json($this->findAll());
   }
 
   public function find($obj) : array

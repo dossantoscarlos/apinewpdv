@@ -8,7 +8,7 @@ class ComprovanteRepository extends EntityRepository implements IRepository
 {
   public function show() : array
   {
-    return ["code" => 200];
+    return Comprovante::json($this->findAll());
   }
 
   public function find($obj) : array

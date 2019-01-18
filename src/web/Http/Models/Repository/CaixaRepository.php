@@ -1,13 +1,19 @@
 <?php
  namespace Web\Http\Models\Repository;
 
+//Doctrine
  use Doctrine\ORM\EntityRepository;
+ use Doctrine\ORM\ORMInvalidArgumentException;
+ use Doctrine\ORM\ORMException;
+
+ //entity
+ use Web\Http\Models\Entity\Caixa;
 
  class CaixaRepository extends EntityRepository implements IRepository
  {
-   dpublic function show() : array
+   public function show() : array
    {
-     return ["code" => 200];
+     return Caixa::json($this->findAll());
    }
 
    public function find($obj) : array

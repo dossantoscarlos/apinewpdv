@@ -8,7 +8,7 @@ class FidelidadeRepository extends EntityRepository implements IRepository
 {
   public function show() : array
   {
-    return ["code" => 200];
+    return Fidelidade::json($this->findAll());
   }
 
   public function find($obj) : array

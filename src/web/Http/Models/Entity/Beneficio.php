@@ -1,5 +1,4 @@
 <?php
-
 namespace Web\Http\Models\Entity;
 
 use Doctrine\ORM\Annotation;
@@ -7,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
 use Web\Http\Models\IJsonSerializable;
 /**
- * @Entity @Table(name="beneficios")
+ * @Entity(repositoryClass="Web\Http\Models\Repository\BeneficioRepository") @Table(name="beneficios")
  **/
 class Beneficio extends EntityManager implements IJsonSerializable
 {
@@ -18,6 +17,7 @@ class Beneficio extends EntityManager implements IJsonSerializable
 	 * @GeneratedValue
 	 **/
 	private $id;
+
 	public function getId() : int {
 		return $this->id;
 	}

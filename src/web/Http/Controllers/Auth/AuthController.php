@@ -6,8 +6,10 @@
   use Firebase\JWT\JWT;
   use Respect\Validation\Validator as V;
 
+
   class AuthController extends Controller
   {
+
     public function auth($request, $response, $args)
     {
 
@@ -37,7 +39,7 @@
         return $this->response->withJson(['error' => true, 'message' => 'Senha Incorreta']);
       }
 
-      $settings = $this->settings; // get settings array.
+      $settings = $this->settings; //captura o array existente em settings
 
       $token = JWT::encode(['id' => $user->id, 'email' => $user->user], $settings['jwt']['secret'], "HS256");
 

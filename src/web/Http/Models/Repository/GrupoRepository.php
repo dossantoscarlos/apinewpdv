@@ -8,7 +8,7 @@ class GrupoRepository extends EntityRepository IRepository
 {
   public function show() : array
   {
-    return ["code" => 200];
+    return Grupo::json($this->findAll());
   }
 
   public function find($obj) : array

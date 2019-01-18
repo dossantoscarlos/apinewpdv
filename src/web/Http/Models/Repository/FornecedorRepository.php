@@ -47,25 +47,27 @@ class FornecedorRepository extends EntityRepository
       return 302;
     }
   }
-  public function removeFornecedor($obj) : int 
+  public function removeFornecedor($obj) : int
   {
     $fId = $this->findFornecedorCnpj($obj->cnpj);
     $f = $this->find($fId[0]['id']);
-    
+
     $this->_em->remove($f);
     $this->_em->flush();
 
     return 204;
   }
 
-  public function updateFornecedor ($obj) : int 
+  public function updateFornecedor ($obj) : int
   {
-    $f = new Fornecedor(); 
+    $f = new Fornecedor();
+    $f = $this->findFornecedorCnpj($obj->cnpj);
     $f->setCep($obj->cep);
     $f->setNumero($obj->numero);
     $f->setComplemento($obj->complemento);
     $f->setTelefone($obj->telefone);
 
+    $f = $this->find($fId[0]['id']);
     $this->_em->persist($f);
     $this->_em->fulsh();
 

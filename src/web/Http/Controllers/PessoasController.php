@@ -7,47 +7,62 @@ use Respect\Validation\Validator as V;
 
 class PessoasController extends Controller implements IApiDAO
 {
-	private $code =['201' => 'Criado com sucesso'];
-
 	public function show($request,$response,$args)
 	{
-		$uriParam = $request->getUri()->getQuery();
-
-		if (!empty($uriParam)) {
-			$objeto = (object) $request->getParams();
-
-			if (isset($objeto->nome)){
-				$error = $this->validator->validate($request,[
-					'nome' => V::Alpha()->notEmpty()
-				]);
-			}elseif (isset($objeto->sobrenome)) {
-				$error = $this->validator->validate($request,[
-					'sobrenome' => V::Alpha()->notEmpty()
-				]);
-			}elseif(isset($objeto->cpf)){
-				$error = $this->validator->validate($request,[
-					'cpf' => V::numeric()->noWhitespace()->notEmpty()
-				]);
-			}
-
-			if($error == null ){
-				$pessoa = null;
-				if (isset($objeto->nome) || isset($objeto->sobrenome)){
-
-					$pessoa = $this->orm->getRepository(Pessoa::class)->findPessoa($objeto);
-
-					$pessoa = $this->orm->getRepository(Pessoa::class)->findCPF($objeto);
-				}
-				return $this->response->withJson($pessoa,200);
-
-			}else{
-				$errors[] = (object) $error;
-				return $this->response->withJson($errors,400);
-			}
-		}else{
-			$pessoa = $this->orm->getRepository(Pessoa::class)->findAllPessoas();
-			return $this->response->withJson($pessoa,200);
+		$obj = (object) $request->getParams();
+		$p = $this->orm->getRepository(Pessoa::class);
+		if(!empty($obj))
+		{
+			$pessoa = ["pessoa" => $p->findAllPessoas()];
+			return $this->response->withJson($pessoa, 200);
 		}
+
+		if (!empty($args))
+		{
+			$obj = (object) $args;
+			if(is_numeric($obj->cpf))
+			{
+				$pessoa = ["pessoa" => $p->findPessoa($obj->cpf)];
+				return $this->response->withJson($pessoa,200);
+			}
+		}
+
+		// $uriParam = $request->getUri()->getQuery();
+		// if (!empty($uriParam)) {
+		// 	$objeto = (object) $request->getParams();
+		// 	if (isset($objeto->nome)){
+		// 		$error = $this->validator->validate($request,[
+		// 			'nome' => V::Alpha()->notEmpty()
+		// 		]);
+		//
+		// 	}elseif (isset($objeto->sobrenome)) {
+		// 		$error = $this->validator->validate($request,[
+		// 			'sobrenome' => V::Alpha()->notEmpty()
+		// 		]);
+		// 	}elseif(isset($objeto->cpf)){
+		// 		$error = $this->validator->validate($request,[
+		// 			'cpf' => V::numeric()->noWhitespace()->notEmpty()
+		// 		]);
+		// 	}
+		//
+		// 	if($error == null ){
+		// 		$pessoa = null;
+		// 		if (isset($objeto->nome) || isset($objeto->sobrenome)){
+		//
+		// 			$pessoa = $this->orm->getRepository(Pessoa::class)->findPessoa($objeto);
+		//
+		// 			$pessoa = $this->orm->getRepository(Pessoa::class)->findCPF($objeto);
+		// 		}
+		// 		return $this->response->withJson($pessoa,200);
+		//
+		// 	}else{
+		// 		$errors[] = (object) $error;
+		// 		return $this->response->withJson($errors,400);
+		// 	}
+		// }else{
+		// 	$pessoa = $this->orm->getRepository(Pessoa::class)->findAllPessoas();
+		// 	return $this->response->withJson($pessoa,200);
+		// }
 	}
 
 
@@ -75,7 +90,7 @@ class PessoasController extends Controller implements IApiDAO
 	public function update($request,$response,$args)
 	{
 		if (is_numeric($args['cpf']) ) {
-			$objeto = (object) $request->getParams();
+
 			$obj = (object) $args;
 			$pessoa = $this->orm->getRepository(Pessoa::class)->atualizarPessoa($obj, $objeto);
 			return $this->response->withStatus($pessoa);

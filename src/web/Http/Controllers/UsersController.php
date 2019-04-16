@@ -8,7 +8,6 @@ use Web\Http\Models\Entity\User;
 
 class UsersController extends Controller implements IApiDAO
 {
-
 	public function show($request, $response, $args)
 	{
 		$uri = $request->getUri()->getQuery();
@@ -38,15 +37,8 @@ class UsersController extends Controller implements IApiDAO
 
 		} else {
 			$user = $userRepo->findUserAll();
-			$users = ['users' => $user ];
-			return $this->response->withJson($users,200);
+			return $this->response->withJson(["users" => $user],200);
 		}
-	}
-
-	public function autenticar($request, $response, $args)
-	{
-		$obj = (object) ['casa','rua'];
-		return $this->response->withJson($obj);
 	}
 
 	public function create($request, $response, $args)
@@ -68,7 +60,6 @@ class UsersController extends Controller implements IApiDAO
 		} else {
 			return $this->response->withStatus(303);
 		}
-
 	}
 
 	public function drop($request, $response, $args)
@@ -106,5 +97,10 @@ class UsersController extends Controller implements IApiDAO
 		} else {
 			return $this->response->withStatus(500);
 		}
+	}
+
+	public function teste($arfd)
+	{
+		return $arfd;
 	}
 }

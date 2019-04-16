@@ -16,15 +16,65 @@ class Beneficio extends EntityManager implements IJsonSerializable
 	 * @Column(type="integer")
 	 * @GeneratedValue
 	 **/
-	private $id;
+private $id;
+	/**
+	 * @var string
+	 * @Column(type="string")
+	 **/
+protected $tipo;
+
+/**
+	* @var string
+	* @Column(type="string",unique=true)
+	**/
+ protected $matricula;
+	/**
+		* @var string
+		* @Column(type="string")
+		**/
+	 protected $status;
+
+	/**
+	 * @ManyToOne(targetEntity="Funcionario", inversedBy="funcionarios")
+	 **/
+	protected $funcionario;
 
 	public function getId() : int {
 		return $this->id;
 	}
 
+
+	public function getTipo()  : String {
+			return $this->tipo;
+	}
+	public function getMatricula() : String {
+		return $this->matricula;
+	}
+	public function getStatus() : String {
+		return $this->status;
+	}
+
+	public function setTipo($tipo) : Beneficio {
+		$this->tipo = $tipo;
+		return $this;
+	}
+
+	public function setMatricula($matricula) : Beneficio {
+		$this->matricula = $matriula;
+		return $this;
+	}
+
+	public function setStatus($status) : Beneficio {
+		$this->status = $status;
+		return $this;
+	}
+
 	public function jsonSerialize() : array {
 		return [
 			'id' => $this->getId(),
+			'tipo' => $this->getTipo(),
+			'matricula' => $this->getMatricula(),
+			'status' => $this->getStatus()
 		];
 	}
 

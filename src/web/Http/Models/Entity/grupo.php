@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Web\Http\Models\Entity;
 
@@ -8,7 +8,7 @@ use Web\Http\Models\IJsonSerializable;
 /**
  * @Entity(repositoryClass="Web\Http\Models\Repository\FornecedorRepository") @Table(name="grupos")
  **/
-class grupo extends EntityManager implements IJsonSerializable 
+class grupo extends EntityManager implements IJsonSerializable
 {
 	/**
 	 * @Id
@@ -17,49 +17,49 @@ class grupo extends EntityManager implements IJsonSerializable
 	 * @GeneratedValue
 	 **/
 	private $id;
-	/** 
-	 * @var String
+	/**
+	 * @var string
 	 * @Column(type="string")
 	 **/
 	private $nome;
-	/** 
-	 * @var String
+	/**
+	 * @var string
 	 * @Column(type="string")
 	 **/
 	private $tipo;
-	
+
 	private $permisoes;
 
 	public function __construct(){}
 
-	public function getId() : int 
+	public function getId() : int
 	{
 		return $this->id;
 	}
 
-	public function getNome() : String 
+	public function getNome() : String
 	{
 		return $this->nome;
 	}
 
-	public function  getTipo() : String 
+	public function  getTipo() : String
 	{
 		return $this->tipo;
 	}
 
-	public function setNome($nome) : void 
+	public function setNome($nome) : void
 	{
 		$this->nome = $nome;
 	}
 
-	public function setTipo($tipo) : void 
+	public function setTipo($tipo) : void
 	{
 		$this->tipo = $tipo;
 	}
 	public function jsonSerialize() : array {
 		return [];
 	}
-	
+
 	public static function json($classe) :array {
 		$result = null ;
 		if (!empty($classe)){

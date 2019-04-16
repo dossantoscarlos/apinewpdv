@@ -9,7 +9,7 @@
    //retorna todos os beneficios cadastrados
    public function show() : array
    {
-     //
+     //retorna todos os objetos
      return Beneficio::json($this->findAll());
    }
 
@@ -43,7 +43,10 @@
      $b = $this->findEntity($obj);
      //altera as query
      $u = $this->find($b[0]['id']);
-     $u->getId();
+     $u->setTipo($obj->tipo)
+       ->setMatricula($obj->matricula)
+       ->setStatus($obj->status)
+       ->getId();
 
      $this->_em->persist($u);
      $this->_em->flush();

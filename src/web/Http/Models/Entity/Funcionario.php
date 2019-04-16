@@ -5,9 +5,10 @@ use Doctrine\Common\Annotation\Annotation;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
 use Web\Http\Models\IJsonSerializable;
+use Web\Cripto\BcryptCustom;
 
-/** 
- * @Entity (repositoryClass="Web\Http\Models\Repository\FuncionarioRepository") 
+/**
+ * @Entity (repositoryClass="Web\Http\Models\Repository\FuncionarioRepository")
  * @Table(name="funcionarios")
  **/
 class Funcionario extends EntityManager implements IJsonSerializable
@@ -26,75 +27,81 @@ class Funcionario extends EntityManager implements IJsonSerializable
 	 **/
 	protected $cargo;
 
-	/** 
+	/**
 	 * @var String
 	 * @Column(type="string")
 	 **/
 	protected $nome;
 
-	/** 
+	/**
 	 * @var String
 	 * @Column(type="string")
 	 **/
 	protected $sobrenome;
 
-	/** 
+	/**
 	 * @var int
 	 * @Column(type="integer")
 	 **/
 	protected $rg;
 
-	/** 
+	/**
 	 * @var int
 	 * @Column(type="integer")
 	 **/
 	protected $cpf;
 
-	/** 
-	 * @var int
-	 * @Column(type="integer")
+	/**
+	 * um funcionario por beneficio
+	 * OneToMany(targetEntity="Beneficio" , mappedBy="beneficios")
 	 **/
-	protected $cep;
-
-	/** 
+	protected $beneficio;
+	/**
 	 * @var int
 	 * @Column(type="integer")
 	 **/
 	protected $numero;
 
-	/** 
-	 * @var String
+	/**
+	 * @var string
 	 * @Column(type="string")
 	 **/
 	protected $complemento;
 
-	/** 
-	 * @var String
+	/**
+	 * @var string
 	 * @Column(type="string")
 	 **/
 	protected $dataAdmissao;
 
-	/** 
-	 * @var String
+	/**
+	 * @var string
 	 * @Column(type="string" , unique=true)
 	 **/
 	protected $matricula;
 
-	/** 
-	 * @var String
+	/**
+	 * @var string
 	 * @Column(type="string")
 	 **/
 	protected $carteira;
 
-	/** 
+	/**
 	 * @var int
 	 * @Column(type="integer")
 	 **/
 	protected $pis;
 
-	protected $permissoes;
+	/**
+		* Um Funcionario para um User.
+		* @OneToOne(targetEntity="User")
+		* @JoinColumn(name="user_id", referencedColumnName="id")
+		*/
+	 private $users;
 
-	public function __construct(){}
+	public function __construct(){
+
+	}
 
 	public function getId() : int {
 			return $this->id;
@@ -193,7 +200,45 @@ class Funcionario extends EntityManager implements IJsonSerializable
 			'pis'=> $this->getPis()
 		];
 	}
-	
+
+	public static function hashPassw($passw) : String
+	{
+		$bcryptCustom = new BcryptCustom();
+		$hash = $bcryptCustom->cryptHash($passw);
+		return $hash;
+	}
+
+	public function auth($classe) : array {
+		$result=null;
+		if (!empty($classe))
+		{
+			foreach ($classe as $key => $value)
+			{
+				$result[] = $classe[$key]->login();
+			}
+			return $result;
+		} else {
+			return ['error'=>true, 'Message' => 'Busca nao retornou resultados'];
+		}
+	}
+
+	public function login() : array{
+		return [
+			'id' => $this->getId(),
+			'cargo' => $this->getCargo(),
+			'nome' => $this->getNome(),
+			'sobrenome' => $this->getSobrenome(),
+			'rg' => $this->getRg(),
+			'cpf' => $this->getCpf(),
+			'numero' => $this->getNumero(),
+			'complemento' => $this->getComplemento(),
+			'data_admissao' => $this->getDataAdmisao(),
+			'maricula' => $this->getMatricula(),
+			'carteira' => $this->getCarteira(),
+			'pis'=> $this->getPis()
+		];
+	}
+
 	public static function json($classe) :array {
 		$result = null ;
 		if (!empty($classe)){

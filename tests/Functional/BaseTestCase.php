@@ -51,8 +51,10 @@ class BaseTestCase extends \PHPUnit_Framework_TestCase
         // Set up a response object
         $response = new Response();
 
+        require __DIR__.'/../../src/bootstrap.php';
+
         // Use the application settings
-        $settings = require __DIR__ . '/../../src/settings.php';
+        $settings = require __DIR__ .'/../../src/settings.php';
 
         // Instantiate the application
         $app = new App($settings);
@@ -66,7 +68,7 @@ class BaseTestCase extends \PHPUnit_Framework_TestCase
         }
 
         // Register routes
-        require __DIR__ . '/../../src/routes.php';
+        require __DIR__. '/../../src/routes.php';
 
         // Process the application
         $response = $app->process($request, $response);

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Web\Http\Controllers;
 
@@ -9,9 +9,7 @@ class FuncionariosController extends Controller implements IApiDAO
 {
 	public function show ($request, $response, $args){
 		$param = (object) $request->getParams();
-		dump($args);
-		die();
-		if(empty($param) ) : 
+		if(empty($param) ) :
 			$f = $this->orm->getRepository(Funcionario::class)->findAllFuncionarios();
 			return $this->response->withJson($f);
 		:else:

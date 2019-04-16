@@ -21,6 +21,13 @@ class Administrador extends EntityManager implements IJsonSerializable
 	 **/
 	private $id;
 
+	protected $funcionario;
+
+	protected $permissao;
+
+	protected $status;
+
+
 	public function getId() : int {
 		return $this->id;
 	}

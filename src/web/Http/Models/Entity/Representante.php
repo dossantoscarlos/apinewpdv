@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Web\Http\Models\Entity;
 
 use Doctrine\ORM\Annotation;
@@ -7,38 +7,41 @@ use Doctrine\ORM\EntityManager;
 use Web\Http\Models\IJsonSerializable;
 
 /**
- * @Entity(repositoryClass="Web\Http\Models\Repository\RepresentanteRepository") 
+ * @Entity(repositoryClass="Web\Http\Models\Repository\RepresentanteRepository")
  * @Table(name="representantes")
  **/
 class Representante extends EntityManager implements IJsonSerializable
 {
 	/**
 	 * @Id
-	 * @var Int
+	 * @var int
 	 * @Column(type="integer")
 	 * @GeneratedValue
 	 **/
 	protected $id;
 	/**
-	 * @var String
+	 * @var string
 	 * @Column(type="string")
 	 **/
-	protected $nome; 
+	protected $nome;
 	/**
-	 * @var String
+	 * @var string
 	 * @Column(type="string")
 	 **/
 	protected $sobrenome;
 	/**
-	 * @var String
+	 * @var string
 	 * @Column(type="string", unique=true)
 	 **/
 	protected $crachar;
 
-	protected $fornecedor;
+	/**
+	 * @ManyToOne(targetEntity="Marca", inversedBy="representantes" )
+	 **/
+	protected $marca;
 
 	public function __construct(){}
-	
+
 	public function getId(){
 		return $this->id;
 	}
@@ -78,7 +81,7 @@ class Representante extends EntityManager implements IJsonSerializable
 	}
 
 	public static function json($classe) : array {
-		$result = null ; 
+		$result = null ;
 		if (!empty($classe)){
 			foreach ($classe as $key => $value) {
 				$result[] = $classe[$key]->jsonSerialize();

@@ -11,83 +11,97 @@ use Web\Http\Models\IJsonSerializable;
  **/
 class Pessoa extends EntityManager implements IJsonSerializable
 {
-	/** 
-	 * @Id 
-	 * @Column(type="integer") 
+	/**
+	 * @Id
+	 * @Column(type="integer")
 	 * @var int
 	 * @GeneratedValue
 	 **/
 	private $id;
-	/** 
-	 * @Column(type="string") 
-	 * @var string 
+	/**
+	 * @Column(type="string")
+	 * @var string
 	 **/
 	protected $nome;
-	/** 
-	 * @Column(type="string") 
-	 * @var string 
+	/**
+	 * @Column(type="string")
+	 * @var string
 	 **/
 	protected $sobrenome;
 	/**
-	 * @Column(type="bigint", unique=true) 
-	 * @var String 
-	 **/
-	protected $cpf;
-	
-	protected $cep;
-	/** 
-	 * @Column(type="integer") 
+	 * @Column(type="bigint", unique=true)
 	 * @var int
 	 **/
-	protected $numero; 
-	/** 
-	 * @Column(type="string", nullable=true) 
-	 * @var string 
+	protected $cpf;
+
+	/**
+	 * @Column(type="integer")
+	 * @var int
+	 **/
+	protected $numero;
+	/**
+	 * @Column(type="string", nullable=true)
+	 * @var string
 	 **/
 	protected $complemento;
-	/** 
-	 * @Column(type="bigint") 
-	 * @var String
+	/**
+	 * @Column(type="bigint")
+	 * @var int
 	 **/
 	protected $tel;
-	/** 
-	 * @Column(type="string") 
-	 * @var string 
+	/**
+	 * @Column(type="string")
+	 * @var string
 	 **/
 	protected $email;
-	
-	public function __construct(){}
+
+	/**
+	 * um cep pertence a varios enderecos. Esse é o lado inverso.
+	 * @OneToMany(targetEntity="Endereco", mappedBy="pessoas")
+	 */
+	private $endereco;
+
+	/**
+   * uma Pessoa para um User.
+   * @OneToOne(targetEntity="User", mappedBy="users")
+   */
+  private $user;
+
+
+	public function __construct() {
+			$this->endereco = new ArrayCollection();
+	}
 
 	public function getId()
 	{
 		return $this->id;
 	}
 
-	public function getNumero() : int 
+	public function getNumero() : int
 	{
 		return $this->numero;
-	} 
-	public function getComplemento() : String 
+	}
+	public function getComplemento() : String
 	{
 		return $this->complemento;
 	}
-	
+
 	public function getTel() : String
-	{ 
-		return $this->tel; 
+	{
+		return $this->tel;
 	}
-	
-	public function getEmail() : String 
-	{ 
-		return $this->email; 
+
+	public function getEmail() : String
+	{
+		return $this->email;
 	}
-	
-	public function getNome() : String 
+
+	public function getNome() : String
 	{
 		return $this->nome;
 	}
 
-	public function getSobrenome() : String 
+	public function getSobrenome() : String
 	{
 		return $this->sobrenome;
 	}
@@ -112,24 +126,24 @@ class Pessoa extends EntityManager implements IJsonSerializable
 		$this->nome = $nome;
 	}
 
-	public function setNumero($numero) 
+	public function setNumero($numero)
 	{
 		return $this->numero = $numero;
 	}
 
-	public function setComplemento($complemento) 
+	public function setComplemento($complemento)
 	{
 		return $this->complemento = $complemento;
 	}
-	
+
 	public function setTel($tel)
-	{ 
-		return $this->tel = $tel; 
+	{
+		return $this->tel = $tel;
 	}
-	
-	public function setEmail($email) 
-	{ 
-		return $this->email = $email; 
+
+	public function setEmail($email)
+	{
+		return $this->email = $email;
 	}
 
 	public function jsonSerialize() : array
@@ -147,7 +161,7 @@ class Pessoa extends EntityManager implements IJsonSerializable
 	}
 
 	public static function json($classe) :array {
-		$result = null ; 
+		$result = null ;
 		if (!empty($classe)){
 			foreach ($classe as $key => $value) {
 				$result[] = $classe[$key]->jsonSerialize();

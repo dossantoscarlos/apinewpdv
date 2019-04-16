@@ -6,7 +6,6 @@
   use Firebase\JWT\JWT;
   use Respect\Validation\Validator as V;
 
-
   class AuthController extends Controller
   {
 
@@ -27,7 +26,14 @@
 
       $user = $this->orm->getRepository(User::class)->findUserAuth($login);
 
+      if (isset($user["error"])){
+        return $this->response->withJson($user);
+      }
+
       $user = (object) $user[0];
+      $teste = dump($user);
+
+      return $this->response->withJson($teste);
 
       if(isset($user->error))
       {

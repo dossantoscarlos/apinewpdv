@@ -1,5 +1,4 @@
 <?php
-
 namespace Web\Http\Models\Entity;
 
 use Doctrine\ORM\Annotation;
@@ -8,7 +7,8 @@ use Doctrine\ORM\EntityManager;
 use Web\Http\Models\IJsonSerializable;
 
 /**
- * @Entity @Table(name="caixas")
+ * @Entity
+ * @Table(name="caixas")
  **/
 class Caixa extends EntityManager implements IJsonSerializable
 {
@@ -19,8 +19,43 @@ class Caixa extends EntityManager implements IJsonSerializable
 	 * @GeneratedValue
 	 **/
 	private $id;
-	public function getId() : int {
+	/**
+	 * @var int
+	 **/
+	protected $venda;
+	/**
+	 * @var int
+	 **/
+	protected $users;
+
+	/**
+	 * @var string
+	 * @Column(type= "string")
+	 **/
+	protected $date;
+
+	/**
+	 * @var int
+	 ****/
+	protected $sangria;
+
+	public function __construct(){
+
+	}
+
+	public function getId() : int
+	{
 		return $this->id;
+	}
+
+	public function getDate(): DateTime
+	{
+		return $this->date;
+	}
+
+	public function setDate(DateTime $date): void
+	{
+		$this->date = $date;
 	}
 
 	public function jsonSerialize() : array {

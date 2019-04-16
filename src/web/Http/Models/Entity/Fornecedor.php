@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Web\Http\Models\Entity;
 
 use Doctrine\ORM\Annotation;
@@ -9,48 +9,93 @@ use Web\Http\Models\IJsonSerializable;
 /**
  * @Entity(repositoryClass="Web\Http\Models\Repository\FornecedorRepository") @Table(name="fornecedores")
  **/
-class Fornecedor extends EntityManager implements IJsonSerializable 
+class Fornecedor extends EntityManager implements IJsonSerializable
 {
-	
-	/** @Id @Column(type="integer") @var int @GeneratedValue **/
+
+	/**
+	 * @Id
+	 * @Column(type="integer")
+	 * @var int
+	 * @GeneratedValue
+	 **/
 	private $id;
-	/** @Column(type="string") @var String **/
+
+	/**
+	 * @Column(type="string")
+	 * @var string
+	 **/
 	protected $nome;
-	/** @Column(type="string") @var String **/
+
+	/**
+	 * @Column(type="string")
+	 * @var string
+	 **/
 	protected $cnpj;
-	/** @Column(type="integer") @var int **/
+
+	/**
+	 * @Column(type="integer")
+	 * @var int
+	 **/
 	protected $numero;
-	/** @Column(type="string") @var String  **/
+
+	/**
+	 * @Column(type="string")
+	 * @var string
+	 **/
 	protected $complemento;
-	/** @Column(type="string") @var String **/
+
+	/**
+	 * @Column(type="string")
+	 * @var string
+	 **/
 	protected $razaoSocial;
-	/** @Column(type="integer") @var int **/
+
+	/**
+	 * @Column(type="integer")
+	 * @var int
+	 **/
 	protected $telefone;
-	/** @Column(type="integer") @var int **/
+
+	/**
+	 * @Column(type="integer")
+	 * @var int
+	 **/
 	protected $cep;
 
-	protected $representantes;
+	/**
+	 * um para muitos. uma empresa pode ter varios produtos
+	 * @OneToMany(targetEntity="Produto",mappedBy="produtos")
+	 **/
+	private $produtos;
 
-	public function __construct(){
-			$this->representantes = new ArrayCollection();
+	/**
+	 * um para muitos. uma empresa pode ter varios produtos
+	 * @OneToMany(targetEntity="Marca", mappedBy="fornecedor")
+	 **/
+	private $marca;
+
+	public function __construct()
+	{
+			$this->produtos = new ArrayCollection();
+			$this->marca = new ArrayCollection();
 	}
 
-	public function getId() : int 
+	public function getId() : int
 	{
 		return $this->id;
 	}
 
-	public function getNome() : String 
-	{ 
+	public function getNome() : String
+	{
 		return $this->$nome;
 	}
 
-	public function setNome($nome) 
+	public function setNome($nome)
 	{
 		$this->nome = $nome;
 	}
 
-	public function getCNPJ() : String 
+	public function getCNPJ() : String
 	{
 		return $this->cnpj;
 	}
@@ -60,7 +105,7 @@ class Fornecedor extends EntityManager implements IJsonSerializable
 		$this->cnpj = $cnpj;
 	}
 
-	public function getNumero() : int 
+	public function getNumero() : int
 	{
 		return $this->numero;
 	}
@@ -70,22 +115,22 @@ class Fornecedor extends EntityManager implements IJsonSerializable
 		$this->numero = $numero;
 	}
 
-	public function getComplemento() : String 
+	public function getComplemento() : String
 	{
 		return $this->complemento;
 	}
 
 	public function setComplemento($complemento)
 	{
-		$this->complemento = $complemento; 
+		$this->complemento = $complemento;
 	}
 
-	public function getRazaoSocial() : String 
+	public function getRazaoSocial() : String
 	{
 		return $this->razaoSocial;
 	}
 
-	public function setRazaoSocial($razaoSocial) 
+	public function setRazaoSocial($razaoSocial)
 	{
 		$this->razaoSocial = $razaoSocial;
 	}
@@ -94,15 +139,15 @@ class Fornecedor extends EntityManager implements IJsonSerializable
 	{
 		$this->telefone = $telefone;
 	}
-	public function getTelefone() : int 
+	public function getTelefone() : int
 	{
 		return $this->telefone;
 	}
 
-	public function getCep() : int 
+	public function getCep() : int
 	{
 		return $this->cep;
-	} 
+	}
 
 	public function setCep($cep)
 	{
@@ -124,7 +169,7 @@ class Fornecedor extends EntityManager implements IJsonSerializable
 	}
 
 	public static function json($classe) :array {
-		$result = null ; 
+		$result = null ;
 		if (!empty($classe)){
 			foreach ($classe as $key => $value) {
 				$result[] = $classe[$key]->jsonSerialize();

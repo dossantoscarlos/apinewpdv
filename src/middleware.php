@@ -23,6 +23,7 @@ $app->add(new RouterSeparator);
 $app->add(new RegisterMediaType);
 
 //Responsavel por liberar o compartilhamento das informacoes do restfull
+
 $app->add(new AccessApi);
 
 //responsavel por registrar os  metodos as rotas
@@ -63,6 +64,7 @@ $app->add(new RegisterMethodRoute);
 //             ->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
 //     }
 // ]));
+
 $app->add(new \Tuupola\Middleware\JwtAuthentication([
     "path" => ["/lojista", "/adm"], /* or ["/api", "/admin"] */
     "attribute" => "decoded_token_data",

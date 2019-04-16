@@ -7,10 +7,13 @@ use Web\Http\Models\IJsonSerializable;
 use Doctrine\ORM\EntityManager;
 use Web\Cripto\BcryptCustom;
 
-/** @Entity(repositoryClass="Web\Http\Models\Repository\UserRepository") @Table(name="users") **/
-class User extends EntityManager implements IJsonSerializable {
-
-   /**
+/**
+ * @Entity(repositoryClass="Web\Http\Models\Repository\UserRepository")
+ * @Table(name="users")
+ **/
+class User extends EntityManager implements IJsonSerializable
+{
+ /**
 	* @Id
 	* @var int
 	* @Column(type ="integer")
@@ -19,35 +22,44 @@ class User extends EntityManager implements IJsonSerializable {
 	private $id;
 
 	/**
-	 * @var String
+	 * @var string
 	 * @Column(type="string", unique=true)
 	 **/
 	protected $user;
 
 	/**
-	 * @var String
+	 * @var string
+	 **/
+	protected $loginIn;
+
+	/**
+	 * @var string
+	 **/
+	protected $loginOut;
+
+	/**
+	 * @var string
 	 * @Column(type="string")
 	 **/
 	protected $passw;
 
-	protected $status;
+	/**
+	 * um user para uma Pessoa.
+	 * @OneToOne(targetEntity="Pessoa", inversedBy="pessoas")
+	 */
+	private $pessoa;
 
-	protected $permision;
-
-	protected $funcionarios;
-
-	public function __construct(){
-
-	}
+	public function __construct(){}
 
 	public function getId() : int
 	{
 		return $this->id;
 	}
 
-	public function setUser($user) : void
+	public function setUser($user) : User
 	{
 		$this->user = $user;
+		return $this;
 	}
 
 	public function getUser() : String
@@ -60,9 +72,10 @@ class User extends EntityManager implements IJsonSerializable {
 		return $this->passw;
 	}
 
-	public function setPassw($passw) : void
+	public function setPassw($passw) : User
 	{
 		$this->passw = $passw;
+		return $this;
 	}
 
 	public static function hashPassw($passw) : String
@@ -82,7 +95,7 @@ class User extends EntityManager implements IJsonSerializable {
 			}
 			return $result;
 		} else {
-			return array(['error'=>true, 'Message' => 'Busca nao retornou resultados']);
+			return ['error'=>true, 'Message' => 'Busca nao retornou resultados'];
 		}
 	}
 
@@ -110,7 +123,7 @@ class User extends EntityManager implements IJsonSerializable {
 			}
 			return $result;
 		}else {
-			return array(['error'=>true, 'Message' =>'Busca nao retornou resultados']);
+			return ['error'=>true, 'Message' =>'Busca nao retornou resultados'];
 		}
 	}
 }

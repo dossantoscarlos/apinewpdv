@@ -1,7 +1,7 @@
 <?php
 namespace Web\Http\Models\Repository;
 
-//doctrines
+//doctrine
 use Doctrine\ORM\EntityRepository;
 //modelos
 use Web\Http\Models\Entity\Administrador;

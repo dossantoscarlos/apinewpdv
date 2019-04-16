@@ -12,7 +12,7 @@ class FornecedoresController extends Controller implements IApiDAO
 		$query = $request->getUri()->getQuery();
 		if(!empty($query)){
 			$find = $this->orm->getRepository(Fornecedor::class)->findFornecedorCnpj($query);
-			return $this->response->withJson($find);
+			return $this->response->withJson($find,200);
 		}else{
 			$find = $this->orm->getRepository(Fornecedor::class)->findAllFornecedores();
 			return $this->response->withJson($find,200);

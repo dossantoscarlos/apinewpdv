@@ -1,6 +1,11 @@
 <?php
-define('APP_ROOT', __DIR__);
+//verifica se a constant APP_ROOT ainda nao foi criada
+if (!defined('APP_ROOT'))
+{
+  define('APP_ROOT', __DIR__);
+}
 
+//configura os settings do slim 
 return [
     'settings' => [
         'displayErrorDetails' => true, // set to false in production

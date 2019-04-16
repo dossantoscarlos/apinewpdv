@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Web\Http\Models\Repository;
 
 use Doctrine\ORM\EntityRepository;
@@ -6,28 +6,22 @@ use Web\Http\Models\Entity\Pessoa;
 use Doctrine\ORM\ORMException;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
-class PessoaRepository extends EntityRepository 
+class PessoaRepository extends EntityRepository
 {
 
-	public function findAllPessoas() : array 
+	public function findAllPessoas() : array
 	{
 		return Pessoa::json($this->findAll());
-	} 
+	}
 
 	public function findPessoa($param) : array
 	{
 		$cQB = $this->_em->createQueryBuilder();
 		$query = $cQB->select(array('p'))
-			->from(Pessoa::class,'p')
-			->where($cQB->expr()->orX(
-					$cQB->expr()->like('p.nome', '?1'),
-					$cQB->expr()->like('p.sobrenome', '?2'),
-					$cQB->expr()->eq('p.cpf','?3')
-				))->setParameter(1,$param->nome.'%')
-			->setParameter(2,$param->sobrenome.'%')
-			->setParameter(3,$param->cpf);
+			->from(Pessoa::class,'p')->where($cQB->expr()->eq('p.cpf','?1'))
+			->setParameter(1,$param->cpf);
 		$pessoa = $query->getQuery()->getResult();
-		return Pessoa::json($pessoa);		
+		return Pessoa::json($pessoa);
 	}
 
 	public function salvarPessoa($param) : int
@@ -79,16 +73,4 @@ class PessoaRepository extends EntityRepository
 		}
 	}
 
-	protected function convert($classe) : array 
-	{
-		$result = null ; 
-		if (!empty($classe)){
-			foreach ($classe as $key => $value) {
-				$result[] = $classe[$key]->jsonSerialize();
-			}
-			return $result;
-		}else {
-			return array('Message' => 'Busca nao retornou resultados');
-		}
-	}
 }

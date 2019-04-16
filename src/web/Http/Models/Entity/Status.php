@@ -17,9 +17,8 @@ class Status extends EntityManager implements IJsonSerializable
    **/
   private $id;
 
-
   protected $tipo;
-  
+
   protected $users;
 
   public function __construct() {}

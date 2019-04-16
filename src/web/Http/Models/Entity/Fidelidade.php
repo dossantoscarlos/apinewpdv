@@ -19,6 +19,7 @@ class Fidelidade extends EntityManager implements IJsonSerializable
 	 * @GeneratedValue
 	 **/
 	private $id;
+	
 	public function getId() : int {
 		return $this->id;
 	}
